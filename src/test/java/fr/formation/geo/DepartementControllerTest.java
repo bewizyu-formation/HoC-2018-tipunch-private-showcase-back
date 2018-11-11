@@ -1,4 +1,4 @@
-package fr.formation.hello;
+package fr.formation.geo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,61 +9,55 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * The type Hello controller test.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HelloControllerTest {
+public class DepartementControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 
-	/**
-	 * Should return hello admin.
-	 *
-	 * @throws Exception the exception
-	 */
 	@Test
-	public void shouldReturnHelloAdmin() throws Exception {
+	public void getDepartement() throws Exception {
 
-		MvcResult mvcResult = mvc.perform(formLogin("/login").user("admin").password("admin")).andReturn();
+		MvcResult mvcResult = mvc.perform(formLogin("/login").user("user").password("user")).andReturn();
 		String authorizationHeader = mvcResult.getResponse().getHeader("Authorization");
 
 		mvc.perform(
-				get("/hello/admin")
+				get("/departements/?nom=Ain")
 						.header("Authorization", authorizationHeader))
-						.andExpect(status().isOk()
+				.andExpect(status().isOk()
 				)
-				.andExpect(content().json("{\n" +
-						"    \"message\": \"Hello Admin!\"\n" +
-						"}"))
-				.andExpect(authenticated().withUsername("admin"));
-		
-//		mvc.perform(get("/hello/user").header("Authorization", authorizationHeader)).andExpect(status().is(403));
+				.andExpect(content().json("[\n" +
+						"    {\n" +
+						"        \"nom\": \"Ain\",\n" +
+						"        \"code\": \"01\",\n" +
+						"        \"codeRegion\": \"84\",\n" +
+						"        \"_score\": 1\n" +
+						"    }\n" +
+						"]"))
+				.andExpect(authenticated().withUsername("user"));
 	}
 
-	/**
-	 * Should forbid admin to hello user.
-	 *
-	 * @throws Exception the exception
-	 */
 	@Test
-	public void shouldForbidAdminToHelloUser() throws Exception {
+	public void getDepartementByCode() throws Exception {
 
-		MvcResult mvcResult = mvc.perform(formLogin("/login").user("admin").password("admin")).andReturn();
-
+		MvcResult mvcResult = mvc.perform(formLogin("/login").user("user").password("user")).andReturn();
 		String authorizationHeader = mvcResult.getResponse().getHeader("Authorization");
-		
-		mvc.perform(get("/hello/user").header("Authorization", authorizationHeader)).andExpect(status().is(403));
+
+		mvc.perform(
+				get("/departements/01")
+						.header("Authorization", authorizationHeader))
+				.andExpect(status().isOk()
+				)
+				.andExpect(content().json("[{\"nom\":\"Ain\",\"code\":\"01\",\"codeRegion\":\"84\"}]"))
+				.andExpect(authenticated().withUsername("user"));
 	}
 
 }

@@ -1,8 +1,5 @@
 package fr.formation.user;
 
-import java.util.Collection;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -12,16 +9,41 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.Collection;
+import java.util.List;
+
+/**
+ * The type User service.
+ */
 @Service
 public class UserService implements UserDetailsService {
 
 	private UserRepository userRepository;
+
 	private UserRoleRepository userRoleRepository;
 
+	/**
+	 * Instantiates a new User service.
+	 *
+	 * @param userRepository     the user repository
+	 * @param userRoleRepository the user role repository
+	 */
 	@Autowired
 	public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository) {
 		this.userRepository = userRepository;
 		this.userRoleRepository = userRoleRepository;
+	}
+
+	/**
+	 * transform a list of roles (as {@link String}) into a list of {@link GrantedAuthority}
+	 *
+	 * @param userRoles
+	 *
+	 * @return
+	 */
+	private static Collection<? extends GrantedAuthority> transformToAuthorities(List<String> userRoles) {
+		String roles = StringUtils.collectionToCommaDelimitedString(userRoles);
+		return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
 	}
 
 	@Override
@@ -40,10 +62,10 @@ public class UserService implements UserDetailsService {
 
 	/**
 	 * Add a new user with the user repository
-	 * 
-	 * @param username
-	 * @param password
-	 * @param roles
+	 *
+	 * @param username the username
+	 * @param password the password
+	 * @param roles    the roles
 	 */
 	public void addNewUser(String username, String password, String... roles) {
 
@@ -61,17 +83,5 @@ public class UserService implements UserDetailsService {
 			userRoleRepository.save(userRole);
 		}
 
-	}
-
-	/**
-	 * transform a list of roles (as {@link String}) into a list of
-	 * {@link GrantedAuthority}
-	 * 
-	 * @param userRoles
-	 * @return
-	 */
-	private static Collection<? extends GrantedAuthority> transformToAuthorities(List<String> userRoles) {
-		String roles = StringUtils.collectionToCommaDelimitedString(userRoles);
-		return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
 	}
 }

@@ -1,4 +1,4 @@
-package fr.formation.hello;
+package fr.formation.geo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,54 +16,50 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * The type Hello controller test.
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class HelloControllerTest {
+public class CommuneControllerTest {
 
 	@Autowired
 	private MockMvc mvc;
 
-	/**
-	 * Should return hello admin.
-	 *
-	 * @throws Exception the exception
-	 */
 	@Test
-	public void shouldReturnHelloAdmin() throws Exception {
+	public void shouldReturnValidResponse() throws Exception {
 
-		MvcResult mvcResult = mvc.perform(formLogin("/login").user("admin").password("admin")).andReturn();
+		MvcResult mvcResult = mvc.perform(formLogin("/login").user("user").password("user")).andReturn();
 		String authorizationHeader = mvcResult.getResponse().getHeader("Authorization");
 
 		mvc.perform(
-				get("/hello/admin")
-						.header("Authorization", authorizationHeader))
-						.andExpect(status().isOk()
-				)
-				.andExpect(content().json("{\n" +
-						"    \"message\": \"Hello Admin!\"\n" +
-						"}"))
-				.andExpect(authenticated().withUsername("admin"));
-		
-//		mvc.perform(get("/hello/user").header("Authorization", authorizationHeader)).andExpect(status().is(403));
-	}
-
-	/**
-	 * Should forbid admin to hello user.
-	 *
-	 * @throws Exception the exception
-	 */
-	@Test
-	public void shouldForbidAdminToHelloUser() throws Exception {
-
-		MvcResult mvcResult = mvc.perform(formLogin("/login").user("admin").password("admin")).andReturn();
-
-		String authorizationHeader = mvcResult.getResponse().getHeader("Authorization");
-		
-		mvc.perform(get("/hello/user").header("Authorization", authorizationHeader)).andExpect(status().is(403));
+				get("/communes/?nom=Amiens")
+				.header("Authorization", authorizationHeader))
+				.andExpect(status().isOk()
+		)
+		.andExpect(content().json("[\n" +
+				"    {\n" +
+				"        \"nom\": \"Amiens\",\n" +
+				"        \"code\": \"80021\",\n" +
+				"        \"codesPostaux\": [\n" +
+				"            \"80000\",\n" +
+				"            \"80080\",\n" +
+				"            \"80090\"\n" +
+				"        ],\n" +
+				"        \"codeDepartement\": \"80\",\n" +
+				"        \"codeRegion\": \"32\",\n" +
+				"        \"_score\": 1\n" +
+				"    },\n" +
+				"    {\n" +
+				"        \"nom\": \"Dreuil-lès-Amiens\",\n" +
+				"        \"code\": \"80256\",\n" +
+				"        \"codesPostaux\": [\n" +
+				"            \"80470\"\n" +
+				"        ],\n" +
+				"        \"codeDepartement\": \"80\",\n" +
+				"        \"codeRegion\": \"32\",\n" +
+				"        \"_score\": 0.6809910623997033\n" +
+				"    }\n" +
+				"]"))
+		.andExpect(authenticated().withUsername("user"));
 	}
 
 }

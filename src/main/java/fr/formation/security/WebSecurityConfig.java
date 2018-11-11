@@ -13,36 +13,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 /**
  * Configuration of the security
- * 
- *
  */
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	/**
+	 * The Role admin.
+	 */
 	static final String ROLE_ADMIN = "ADMIN";
-
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		// @formatter:off
-		http.cors().and().csrf().disable().authorizeRequests()
-			.antMatchers("/v2/api-docs").permitAll()
-			.antMatchers("/swagger-ui.html").permitAll()
-			.antMatchers("/health/").permitAll()
-			.antMatchers(HttpMethod.PUT,"/users/").permitAll()
-			.antMatchers(HttpMethod.POST, "/login").permitAll()
-			.anyRequest().authenticated()
-				.and()	
-			.logout().permitAll()
-				.and()
-			// We filter the api/login requests
-	        .addFilterBefore(new JwtLoginFilter("/login", authenticationManager()),
-	                		UsernamePasswordAuthenticationFilter.class)
-	        // And filter other requests to check the presence of JWT in header
-	        .addFilterBefore(new JwtAuthenticationFilter(),
-	                		UsernamePasswordAuthenticationFilter.class);
-		// @formatter:on
-	}
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
@@ -55,7 +34,34 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/public");
 	}
 
-	// Algorithme de hashage du mot de passe
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		// @formatter:off
+		http.cors().and().csrf().disable().authorizeRequests()
+				.antMatchers("/v2/api-docs").permitAll()
+				.antMatchers("/swagger-ui.html").permitAll()
+				.antMatchers("/health/").permitAll()
+				.antMatchers(HttpMethod.PUT, "/users/").permitAll()
+				.antMatchers(HttpMethod.POST, "/login").permitAll()
+				.anyRequest().authenticated()
+				.and()
+				.logout().permitAll()
+				.and()
+				// We filter the api/login requests
+				.addFilterBefore(new JwtLoginFilter("/login", authenticationManager()),
+						UsernamePasswordAuthenticationFilter.class)
+				// And filter other requests to check the presence of JWT in header
+				.addFilterBefore(new JwtAuthenticationFilter(),
+						UsernamePasswordAuthenticationFilter.class);
+		// @formatter:on
+	}
+
+	/**
+	 * Password encoder password encoder.
+	 *
+	 * @return the password encoder
+	 */
+// Algorithme de hashage du mot de passe
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

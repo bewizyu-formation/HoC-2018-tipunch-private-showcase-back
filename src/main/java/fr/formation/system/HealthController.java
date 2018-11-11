@@ -6,12 +6,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Controller that check the application status
- *
  */
 @RestController
 @RequestMapping("/health")
 public class HealthController {
 
+	/**
+	 * Check string.
+	 *
+	 * @return the string
+	 */
 	@GetMapping("/")
 	public String check() {
 		return "OK";

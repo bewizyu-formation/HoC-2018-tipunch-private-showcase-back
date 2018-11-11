@@ -1,34 +1,58 @@
 package fr.formation.hello;
 
-import java.io.IOException;
-
+import fr.formation.security.SecurityConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
+/**
+ * The type Hello controller.
+ */
 @RestController
 @RequestMapping("/hello")
-@Secured("ROLE_USER")
+@Secured(SecurityConstants.ROLE_USER)
 public class HelloController {
 
+	/**
+	 * The Logger.
+	 */
 	Logger logger = LoggerFactory.getLogger(HelloController.class);
 
+	/**
+	 * Say hello admin hello.
+	 *
+	 * @return the hello
+	 */
 	@GetMapping("/admin")
-	@Secured("ROLE_ADMIN")
-	Hello sayHelloAdmin() { return new Hello("Hello Admin!");}
+	@Secured(SecurityConstants.ROLE_ADMIN)
+	Hello sayHelloAdmin() {
+		return new Hello("Hello Admin!");
+	}
 
+	/**
+	 * Say hello user hello.
+	 *
+	 * @return the hello
+	 */
 	@GetMapping("/user")
-	@Secured("ROLE_USER")
 	Hello sayHelloUser() {
 		return new Hello("Hello User!");
 	}
 
+	/**
+	 * Handle form upload string.
+	 *
+	 * @param name the name
+	 * @param file the file
+	 *
+	 * @return the string
+	 *
+	 * @throws IOException the io exception
+	 */
 	@PostMapping("/upload")
 	public String handleFormUpload(@RequestParam("name") String name, @RequestParam("file") MultipartFile file)
 			throws IOException {
@@ -51,6 +75,11 @@ public class HelloController {
 		return "redirect:uploadFailure";
 	}
 
+	/**
+	 * Upload failure string.
+	 *
+	 * @return the string
+	 */
 	@GetMapping("/uploadFailure")
 	public String uploadFailure() {
 		return "Upload Failure !";
