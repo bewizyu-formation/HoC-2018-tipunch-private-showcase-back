@@ -34,6 +34,11 @@ public class GeoApiConstants {
 	 * The constant PARAMS_CODE.
 	 */
 	public static final String PARAMS_CODE = "code";
+	
+	/**
+	 * The constant PARAMS_POSTALCODE.
+	 */
+	public static final String PARAMS_POSTALCODE = "codePostal";
 
 	/**
 	 * The constant COMMUNE_FIELDS_VALUES.
