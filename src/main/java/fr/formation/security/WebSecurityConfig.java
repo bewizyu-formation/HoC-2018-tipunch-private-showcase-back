@@ -43,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/health/").permitAll()
 				.antMatchers(HttpMethod.PUT, "/users/").permitAll()
 				.antMatchers(HttpMethod.POST, "/login").permitAll()
+				.antMatchers("/public/**").permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.logout().permitAll()

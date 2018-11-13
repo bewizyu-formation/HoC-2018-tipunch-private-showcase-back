@@ -10,21 +10,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 /**
  * The type Commune controller.
  */
 @RestController
-@Secured(SecurityConstants.ROLE_USER)
-@RequestMapping("/communes")
-public class CommuneController {
+@RequestMapping("/public/communes")
+public class CommunePublicController {
 
-	private static final Logger log = LoggerFactory.getLogger(CommuneController.class);
+	private static final Logger log = LoggerFactory.getLogger(CommunePublicController.class);
 
 	private CommuneService communeService;
 
@@ -34,7 +35,7 @@ public class CommuneController {
 	 * @param communeService the commune service
 	 */
 	@Autowired
-	public CommuneController(CommuneService communeService) {
+	public CommunePublicController(CommuneService communeService) {
 		this.communeService = communeService;
 	}
 
@@ -45,9 +46,22 @@ public class CommuneController {
 	 *
 	 * @return the communes
 	 */
-	@GetMapping("/")
-	public ResponseEntity<List<Commune>> getCommunes(@RequestParam final String nom) {
+	@GetMapping(value = "", params = "nom")
+	public ResponseEntity<List<Commune>> getCommunes(@RequestParam("nom") final String nom) {
 		final List<Commune> communes = this.communeService.getCommunes(nom);
+		return new ResponseEntity<>(communes, HttpStatus.OK);
+	}
+	
+	/**
+	 * Gets communes by Postal Code.
+	 *
+	 * @param postalcode the Postal Code
+	 *
+	 * @return the communes
+	 */
+	@GetMapping(value="", params = "codePostal")
+	public ResponseEntity<List<Commune>> getCommunesByCode(@RequestParam("codePostal") final String postalcode) {
+		final List<Commune> communes = this.communeService.getCommunesByPostalCode(postalcode);
 		return new ResponseEntity<>(communes, HttpStatus.OK);
 	}
 
