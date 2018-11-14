@@ -38,8 +38,8 @@ public class DepartementController {
 	 *
 	 * @return the departement
 	 */
-	@GetMapping("/")
-	public ResponseEntity<List<Departement>> getDepartement(@RequestParam final String nom) {
+	@GetMapping(value = "", params = "nom")
+	public ResponseEntity<List<Departement>> getDepartement(@RequestParam("nom") final String nom) {
 		final List<Departement> departements = this.departementService.getDepartement(nom);
 		return new ResponseEntity<>(departements, HttpStatus.OK);
 	}
@@ -51,8 +51,8 @@ public class DepartementController {
 	 *
 	 * @return the departement by code
 	 */
-	@GetMapping("/{code}")
-	public ResponseEntity<List<Departement>> getDepartementByCode(@PathVariable(value = "code") final String code) {
+	@GetMapping(value = "", params = "code")
+	public ResponseEntity<List<Departement>> getDepartementByCode(@RequestParam("code") final String code) {
 		final List<Departement> departements = this.departementService.getDepartementByCode(code);
 		return new ResponseEntity<>(departements, HttpStatus.OK);
 	}
