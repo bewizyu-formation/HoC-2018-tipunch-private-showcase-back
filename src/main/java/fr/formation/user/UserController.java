@@ -24,11 +24,9 @@ public class UserController {
 	 * @param roles    the roles
 	 */
 	@PutMapping("/")
-	public void signup(@RequestParam String username, @RequestParam String password,
-										 @RequestParam String... roles) {
-
-		userService.addNewUser(username, password, roles);
-
+	public void signup(@RequestParam String username, @RequestParam String password, @RequestParam String email, 
+			@RequestParam String cityName, @RequestParam String... roles) {
+		userService.addNewUser(username, password, email, cityName, roles);
 	}
 
 }

@@ -2,26 +2,56 @@ package fr.formation.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import fr.formation.Event.Event;
+import fr.formation.artist.Artist;
+
+import java.util.Collection;
+
 import javax.persistence.*;
 
 /**
  * The type User.
  */
 @Entity
-@Table(name = "user")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
-
-	@Column(name = "username")
+	
+	@Column(unique = true, nullable = false)
 	private String username;
 
-
-	@Column(name = "password")
+	@Column(nullable = false)
 	@JsonIgnore
 	private String password;
+	
+	@Column(unique = true, nullable = false)
+	private String email;
+	
+	@Column(nullable = false)
+	private String cityName;
+	
+	@Column(nullable = false)
+	private String cityCode;
+	
+	@Column(nullable = false)
+	private String deptName;
+	
+	@Column(nullable = false)
+	private String deptCode;
+	
+	
+	@ OneToOne()
+	private Artist artist;
+	
+	@ManyToMany()
+	
+	private Collection<Event> event;
+
+	
+	
+	
 
 
 	/**
@@ -82,5 +112,94 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	/**
+	 * Gets email
+	 * @return email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	
+	/**
+	 * Sets email.
+	 *
+	 * @param email the email
+	 */
+	public void setEmail(String email ) {
+		this.email = email;
+	}
+	
+	/**
+	 * Gets cityName
+	 * @return cityName
+	 */
+	public String getCityName() {
+		return cityName;
+	}
+	
+	/**
+	 * Sets cityName.
+	 *
+	 * @param cityName the CityName
+	 */
+	public void setCityName(String cityName ) {
+		this.cityName = cityName;
+	}
+	
+	/**
+	 * Gets cityCode
+	 * @return cityName
+	 */
+	public String getCityCode() {
+		return cityName;
+	}
+	
+	/**
+	 * Sets cityCode.
+	 *
+	 * @param cityCode the CityCode
+	 */
+	public void setCityCode(String cityCode ) {
+		this.cityCode = cityCode;
+	}
+	
+	/**
+	 * Gets deptName
+	 * @return deptName
+	 */
+	public String getDepartementName() {
+		return deptName;
+	}
+	
+	/**
+	 * Sets deptName.
+	 *
+	 * @param cityCode the CityCode
+	 */
+	public void setDepartemantName(String deptName ) {
+		this.deptName = deptName;
+	}
+	
+	/**
+	 * Gets deptCode
+	 * @return deptCode
+	 */
+	public String getDeptCode() {
+		return deptName;
+	}
+	
+	/**
+	 * Sets deptCode.
+	 *
+	 * @param deptCode the deptCode
+	 */
+	public void setDeptCode(String deptCode ) {
+		this.deptCode = deptCode;
+	}
+	
+	
+	
+	
 
 }
