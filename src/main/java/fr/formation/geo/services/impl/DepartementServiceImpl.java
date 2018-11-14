@@ -35,7 +35,7 @@ public class DepartementServiceImpl implements DepartementService {
 		UriComponentsBuilder builder = UriComponentsBuilder
 				.fromUriString(GeoApiConstants.GEO_API_BASE_URL + GeoApiConstants.RESOURCE_DEPARTEMENT)
 				.queryParam(GeoApiConstants.PARAMS_NOM, nom)
-				.queryParam(GeoApiConstants.PARAMS_FIELDS, GeoApiConstants.DEPARTEMENT_FIELDS_VALUES);
+				.queryParam(GeoApiConstants.PARAMS_FIELDS, GeoApiConstants.COMMUNE_FIELDS_VALUES);
 
 		return this.restTemplate.getForObject(
 				builder.toUriString(),
