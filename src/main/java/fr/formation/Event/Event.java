@@ -3,14 +3,11 @@
  */
 package fr.formation.Event;
 
-
 import java.util.Date;
-
 import java.util.Set;
-
 import javax.persistence.*;
 
-
+import fr.formation.artist.Artist;
 import fr.formation.booking.Booking;
 import fr.formation.user.User;
 
@@ -25,35 +22,20 @@ import fr.formation.user.User;
 @Entity
 public class Event {
 	
-	/**
-	 * @param id
-	 * @param user
-	 * @param booking
-	 * @param nbrTicketMax
-	 * @param eventDate
-	 */
-	protected Event( Set<User> user, Set<Booking> booking, int nbrTicketMax, Date eventDate) {
-		super();
-		this.user = user;
-		this.booking = booking;
-		this.nbrTicketMax = nbrTicketMax;
-		this.eventDate = eventDate;
-	}
-	
 	@Id
 	@GeneratedValue
 	private Long id;
 	
-	@ManyToMany()
+	@OneToMany()
 	private Set<User> user;
-
-	@OneToMany(mappedBy = "event")
+	
+	@OneToMany()
+	private Set<Artist> artist;
+	
+	@OneToMany()
 	private Set<Booking> booking;
 	
-	
-
-
-	@Column(nullable = false)
+	@Column( nullable = false)
 	private int nbrTicketMax;
 	
 	@Temporal(TemporalType.DATE)
