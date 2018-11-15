@@ -32,10 +32,6 @@ public class Artist {
 	@ManyToMany()
 	private Collection<Event> event;
 	
-	@OneToMany()
-	private Collection<Booking> booking;
-	
-	
 	@Column(name = "artistName")
 	private String artistName;
 	
@@ -54,6 +50,8 @@ public class Artist {
 	
 	@Column(name = "website")
 	private String website;
+	
+	
 	
 	
 	/**

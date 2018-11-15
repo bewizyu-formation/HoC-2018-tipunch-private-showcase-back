@@ -7,6 +7,8 @@ import fr.formation.artist.Artist;
 
 import java.util.Collection;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 /**
@@ -14,6 +16,29 @@ import javax.persistence.*;
  */
 @Entity
 public class User {
+
+	/**
+	 * @param id
+	 * @param username
+	 * @param user_password
+	 * @param user_email
+	 * @param user_cityName
+	 * @param user_cityCode
+	 * @param user_departemantName
+	 * @param user_departementCode
+	 * @param user_role
+	 */
+	public User( String username, String user_password, String user_email, String user_cityName,
+			String user_cityCode, String user_departemantName, String user_departementCode) {
+		this.username = username;
+		this.user_password = user_password;
+		this.user_email = user_email;
+		this.user_cityName = user_cityName;
+		this.user_cityCode = user_cityCode;
+		this.user_departemantName = user_departemantName;
+		this.user_departementCode = user_departementCode;
+	}
+
 
 	@Id
 	@GeneratedValue
@@ -24,36 +49,37 @@ public class User {
 
 	@Column(nullable = false)
 	@JsonIgnore
-	private String password;
+	private String user_password;
 	
 	@Column(unique = true, nullable = false)
-	private String email;
+	private String user_email;
 	
 	@Column(nullable = false)
-	private String cityName;
+	private String user_cityName;
 	
 	@Column(nullable = false)
-	private String cityCode;
+	private String user_cityCode;
 	
 	@Column(nullable = false)
-	private String deptName;
+	private String user_departemantName;
 	
 	@Column(nullable = false)
-	private String deptCode;
+	private String user_departementCode;
 	
 	
 	@ OneToOne()
+	@JoinColumn(name="artist_id")
 	private Artist artist;
 	
-	@ManyToMany()
+	@OneToMany(mappedBy ="user" )
+	private Collection<UserRole> userRoles;
 	
-	private Collection<Event> event;
+	@ManyToMany(mappedBy ="user")
+	private Set<Event> event ;
+	
+	
 
 	
-	
-	
-
-
 	/**
 	 * Gets id.
 	 *
@@ -75,9 +101,9 @@ public class User {
 
 
 	/**
-	 * Gets username.
+	 * Gets user_name.
 	 *
-	 * @return the username
+	 * @return the user_name
 	 */
 	public String getUsername() {
 		return username;
@@ -85,9 +111,9 @@ public class User {
 
 
 	/**
-	 * Sets username.
+	 * Sets user_name.
 	 *
-	 * @param username the username
+	 * @param username the user_name
 	 */
 	public void setUsername(String username) {
 		this.username = username;
@@ -100,7 +126,7 @@ public class User {
 	 * @return the password
 	 */
 	public String getPassword() {
-		return password;
+		return user_password;
 	}
 
 
@@ -109,8 +135,8 @@ public class User {
 	 *
 	 * @param password the password
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String user_password) {
+		this.user_password = user_password;
 	}
 	
 	/**
@@ -118,7 +144,7 @@ public class User {
 	 * @return email
 	 */
 	public String getEmail() {
-		return email;
+		return user_email;
 	}
 	
 	/**
@@ -126,8 +152,8 @@ public class User {
 	 *
 	 * @param email the email
 	 */
-	public void setEmail(String email ) {
-		this.email = email;
+	public void setEmail(String user_email ) {
+		this.user_email = user_email;
 	}
 	
 	/**
@@ -135,7 +161,7 @@ public class User {
 	 * @return cityName
 	 */
 	public String getCityName() {
-		return cityName;
+		return user_cityName;
 	}
 	
 	/**
@@ -143,8 +169,8 @@ public class User {
 	 *
 	 * @param cityName the CityName
 	 */
-	public void setCityName(String cityName ) {
-		this.cityName = cityName;
+	public void setCityName(String user_cityName ) {
+		this.user_cityName = user_cityName;
 	}
 	
 	/**
@@ -152,7 +178,7 @@ public class User {
 	 * @return cityName
 	 */
 	public String getCityCode() {
-		return cityName;
+		return user_cityName;
 	}
 	
 	/**
@@ -160,8 +186,8 @@ public class User {
 	 *
 	 * @param cityCode the CityCode
 	 */
-	public void setCityCode(String cityCode ) {
-		this.cityCode = cityCode;
+	public void setCityCode(String user_cityCode ) {
+		this.user_cityCode = user_cityCode;
 	}
 	
 	/**
@@ -169,7 +195,7 @@ public class User {
 	 * @return deptName
 	 */
 	public String getDepartementName() {
-		return deptName;
+		return user_departemantName;
 	}
 	
 	/**
@@ -177,8 +203,8 @@ public class User {
 	 *
 	 * @param cityCode the CityCode
 	 */
-	public void setDepartemantName(String deptName ) {
-		this.deptName = deptName;
+	public void setDepartemantName(String user_departeamntName ) {
+		this.user_departemantName = user_departeamntName;
 	}
 	
 	/**
@@ -186,7 +212,7 @@ public class User {
 	 * @return deptCode
 	 */
 	public String getDeptCode() {
-		return deptName;
+		return user_departementCode;
 	}
 	
 	/**
@@ -194,9 +220,12 @@ public class User {
 	 *
 	 * @param deptCode the deptCode
 	 */
-	public void setDeptCode(String deptCode ) {
-		this.deptCode = deptCode;
+	public void setDeptCode(String user_departementCode ) {
+		this.user_departementCode = user_departementCode;
 	}
+	
+	
+
 	
 	
 	

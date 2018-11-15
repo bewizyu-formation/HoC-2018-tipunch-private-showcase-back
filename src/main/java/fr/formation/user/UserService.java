@@ -69,16 +69,9 @@ public class UserService implements UserDetailsService {
 	 * @param email    the email 
 	 */
 	public void addNewUser(String username,String password, String email, String cityName, 
-			String cityCode, String deptName, String deptCode,  String... roles ) {
+			String cityCode, String deptName, String deptCode, String... roles ) {
 
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setEmail(email);
-		user.setCityName(cityName);
-		user.setCityCode(cityCode);
-		user.setDepartemantName(deptName);
-		user.setDeptCode(deptCode);
+		User user = new User(username, password, email, cityName, cityCode, deptName, deptCode);
 		user = userRepository.save(user);
 
 		for (String role : roles) {
@@ -87,7 +80,7 @@ public class UserService implements UserDetailsService {
 			userRole.setRole(role);
 			userRole.setUserId(user.getId());
 
-			userRoleRepository.save(userRole);²
+			userRoleRepository.save(userRole);
 		}
 
 	}

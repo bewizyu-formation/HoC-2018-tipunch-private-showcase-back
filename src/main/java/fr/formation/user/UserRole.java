@@ -6,7 +6,6 @@ import javax.persistence.*;
  * The type User role.
  */
 @Entity
-@Table(name = "user_roles")
 public class UserRole {
 
 	@Id
@@ -18,6 +17,10 @@ public class UserRole {
 
 	@Column(name = "role")
 	private String role;
+	
+	@ManyToOne()
+	private User user;
+	
 
 	/**
 	 * Gets role id.

@@ -13,11 +13,11 @@ public interface UserRoleRepository extends JpaRepository<UserRole, Integer> {
 	/**
 	 * Find role by user name list.
 	 *
-	 * @param username the username
+	 * @param user_name the user_name
 	 *
 	 * @return the list
 	 */
 	@Query("select a.role from UserRole a, User b where b.username=?1 and a.userId=b.id")
-	public List<String> findRoleByUserName(String username);
+	public List<String> findRoleByUserName(String user_name);
 
 }
