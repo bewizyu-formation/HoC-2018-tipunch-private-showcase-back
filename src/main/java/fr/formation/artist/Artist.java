@@ -1,13 +1,21 @@
 package fr.formation.artist;
 
-import java.util.Set;
+//import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+//import javax.persistence.ManyToMany;
+//import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-import fr.formation.Event.Event;
-import fr.formation.department.Department;
-import fr.formation.image.Image;
-import fr.formation.rating.Rating;
+//import fr.formation.Event.Event;
+//import fr.formation.department.Department;
+//import fr.formation.image.Image;
+//import fr.formation.rating.Rating;
 import fr.formation.user.User;
 
 /**
@@ -43,21 +51,20 @@ public class Artist {
 //	@OneToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(unique = true, nullable = false, name="imageId")
 //	private Image image;
-//	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(unique = true, nullable = false, name="userId")
-//	private User user;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private User user;
 	
 	public Artist(String artist_name, String artist_shortDesc, String artist_longDesc, 
-			String artist_phone, String artist_email, String artist_website, Image image, User user) {
+			String artist_phone, String artist_email, String artist_website, /*Image image,*/ User user) {
 		this.artist_name = artist_name;
 		this.artist_shortDesc = artist_shortDesc;
 		this.artist_longDesc = artist_longDesc;
 		this.artist_phone = artist_phone;
 		this.artist_email = artist_email;
 		this.artist_website = artist_website;
-//		this.image = image;
-//		this.user = user;
+		//this.image = image;
+		this.user = user;
 	}
 	
 //	@OneToMany(cascade = CascadeType.ALL)
@@ -68,8 +75,8 @@ public class Artist {
 //	
 //	@ManyToMany(cascade = CascadeType.ALL)
 //	private Set<Department> departments;
-	
-	
+//	
+//	
 
 	
 	
