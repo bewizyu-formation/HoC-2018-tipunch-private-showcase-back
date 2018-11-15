@@ -1,16 +1,13 @@
 package fr.formation.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+//
+////import fr.formation.Event.Event;
+//import fr.formation.artist.Artist;
+//
+//import java.util.Set;
 
-import fr.formation.Event.Event;
 import fr.formation.artist.Artist;
-
-<<<<<<< HEAD
-=======
-import java.util.Set;
-
->>>>>>> 0426991c020e1599195fc0c263af95067a4f04bc
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -18,6 +15,7 @@ import javax.persistence.*;
 * The type User.
 */
 @Entity
+@Table(name = "users")
 public class User {
 
     /**
@@ -67,18 +65,12 @@ public class User {
 	private String user_departemantName;
 	
 	@Column(nullable = false)
-	private String user_departementCode;
-	
-	
-	@ OneToOne()
-	@JoinColumn(name="artist_id")
-	private Artist artist;
-	
-	@OneToMany(mappedBy ="user")
-	private Set<Event> event ;
-	
-	
+	private String user_departementCode;	
 
+//	
+//	@OneToMany(mappedBy ="user")
+//	private Set<Event> events ;
+	
 	
 	/**
 	 * Gets id.
