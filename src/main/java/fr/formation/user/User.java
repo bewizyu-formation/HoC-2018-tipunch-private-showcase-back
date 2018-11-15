@@ -5,8 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.formation.Event.Event;
 import fr.formation.artist.Artist;
 
-import java.util.Collection;
-
 import java.util.Set;
 
 import javax.persistence.*;
@@ -71,10 +69,7 @@ public class User {
 	@JoinColumn(name="artist_id")
 	private Artist artist;
 	
-	@OneToMany(mappedBy ="user" )
-	private Collection<UserRole> userRoles;
-	
-	@ManyToMany(mappedBy ="user")
+	@OneToMany(mappedBy ="user")
 	private Set<Event> event ;
 	
 	

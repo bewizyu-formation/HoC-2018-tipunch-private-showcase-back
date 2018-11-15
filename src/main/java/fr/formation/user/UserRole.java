@@ -17,10 +17,6 @@ public class UserRole {
 
 	@Column(name = "role")
 	private String role;
-	
-	@ManyToOne()
-	private User user;
-	
 
 	/**
 	 * Gets role id.

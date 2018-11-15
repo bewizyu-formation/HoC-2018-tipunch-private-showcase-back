@@ -26,8 +26,8 @@ public class Event {
 	@GeneratedValue
 	private Long id;
 	
-	@OneToMany()
-	private Set<User> user;
+	@ManyToOne()
+	private User user;
 	
 	@OneToMany()
 	private Set<Artist> artist;
