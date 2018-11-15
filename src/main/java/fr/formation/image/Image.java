@@ -2,30 +2,43 @@ package fr.formation.image;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.*;
 
-import fr.formation.user.User;
+import fr.formation.artist.Artist;
 
 @Entity
-@Table(name = "image")
 public class Image {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
+
+	@Column(unique = true, nullable = false)
+	private String img_name;
 	
-	@OneToOne()
-	private User user;
+	@Column(unique = true, nullable = false)
+	private String img_path;
 	
-	@Lob
-	@Column(name = "imageName")
-	private byte[] imageName;
+//	@OneToOne
+//	private Artist artist;
 	
-	@Column(name = "path")
-	private String path;
+	
+	/**
+	 * Image Constructor.
+	 * @param id
+	 * @param img_name
+	 * @param img_path
+	 * @param artist
+	 */
+	public Image(Long id, String img_name, String img_path, Artist artist) {
+		this.id = id;
+		this.img_name = img_name;
+		this.img_path = img_path;
+//		this.artist = artist;
+	}
+	
 	
 	/**
 	 * Gets id.
@@ -35,7 +48,6 @@ public class Image {
 	public Long getId() {
 		return id;
 	}
-
 
 	/**
 	 * Sets id.
@@ -49,37 +61,36 @@ public class Image {
 	/**
 	 * Gets path.
 	 *
-	 * @return the id
+	 * @return the image path
 	 */
-	public String getPath() {
-		return path;
+	public String getImagePath() {
+		return img_path;
 	}
 
-
 	/**
-	 * Sets id.
+	 * Sets image path.
 	 *
-	 * @param id the id
+	 * @param path the path
 	 */
-	public void setPath(String path) {
-		this.path = path;
+	public void setImagePath(String path) {
+		this.img_path = path;
 	}
 	
 	/**
-	 * Gets ImageName.
+	 * Gets Image's Name.
 	 *
 	 * @return the ImageName
 	 */
-	public byte[] GetImageName() {
-		return imageName; 
+	public String GetImageName() {
+		return img_name; 
 	}
 	
 	/**
-	 * Sets imageName.
+	 * Sets image's name.
 	 *
 	 * @param imageName 
 	 */
-	public void setImageName( byte[] imageName) {
-		this.imageName = imageName;
+	public void setImageName(String imageName) {
+		this.img_name = imageName;
 	}
 }

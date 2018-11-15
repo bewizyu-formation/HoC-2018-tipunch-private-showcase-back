@@ -41,6 +41,7 @@ public class Event {
 	@Temporal(TemporalType.DATE)
 	@Column(name="CREATED_TIME")
 	private Date eventDate ;
+
 	
 	/**
 	 * Gets id.
@@ -66,17 +67,17 @@ public class Event {
 	 *
 	 * @return the ndrTicketMax
 	 */
-	public int getNumberOfTicketsMax() {
-		return nbrTicketMax;
-	}
-
-
-	/**
-	 * Sets nbrTicketMax.
-	 *
-	 * @param nbrTicketMax the nbrTicketMax
-	 */
-	public void setNumberOfTicketsMax(int nbrTicketMax ) {
-		this.nbrTicketMax= nbrTicketMax ;
-	}
+//	public int getNumberOfTicketsMax() {
+//		return nbrTicketMax;
+//	}
+//
+//
+//	/**
+//	 * Sets nbrTicketMax.
+//	 *
+//	 * @param nbrTicketMax the nbrTicketMax
+//	 */
+//	public void setNumberOfTicketsMax(int nbrTicketMax ) {
+//		this.nbrTicketMax= nbrTicketMax ;
+//	}
 }

@@ -25,8 +25,7 @@ public class UserController {
 	 */
 	@PutMapping("/")
 	public void signup(@RequestParam String username, @RequestParam String password, @RequestParam String email, 
-			@RequestParam String cityName, @RequestParam String cityCode, @RequestParam String deptName, @RequestParam String user_departementCode,String... roles) {
-		userService.addNewUser(username, password, email, cityName, cityCode, deptName, user_departementCode, roles);
+			@RequestParam String cityName, @RequestParam String cityCode, @RequestParam String deptName, @RequestParam String deptCode, @RequestParam String... roles) {
+		userService.addNewUser(username, password, email, cityName, cityCode, deptName, deptCode, roles);
 	}
-
 }

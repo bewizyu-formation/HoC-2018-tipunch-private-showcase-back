@@ -6,22 +6,33 @@ import fr.formation.artist.Artist;
 import fr.formation.user.User;
 
 @Entity
-@Table(name = "rating")
 public class Rating {
-	
+
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 	
-	@ManyToOne()
-	private Artist artist;
+	@ManyToOne
+	@JoinColumn(name = "artistId", nullable = false)
+	private Artist artistId;
 	
-	@ManyToOne()
-	private User user;
+	@ManyToOne
+	@JoinColumn(name = "userId", nullable = false)
+	private User userId;
 	
-	@Column(name = " rate")
-	private int rate;
-
+	@Column(nullable = false)
+	private int rating_rate;
+	
+	
+	public Rating(Long id, Artist artistId, User userId, int rating_rate) {
+		this.id = id;
+		this.artistId = artistId;
+		this.userId = userId;
+		this.rating_rate = rating_rate;
+	}
+	
+	
 	/**
 	 * Gets id.
 	 *
@@ -42,12 +53,48 @@ public class Rating {
 	}
 	
 	/**
+	 * get Artist Id.
+	 * @return the artistId
+	 */
+	public Artist getArtistId() {
+		return artistId;
+	}
+
+
+	/**
+	 * set Artist Id.
+	 * @param artistId the artistId to set
+	 */
+	public void setArtistId(Artist artistId) {
+		this.artistId = artistId;
+	}
+
+
+	/**
+	 * get User Id.
+	 * @return the userId
+	 */
+	public User getUserId() {
+		return userId;
+	}
+
+
+	/**
+	 * set Artist Id.
+	 * @param userId the userId to set
+	 */
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+	
+	
+	/**
 	 * Gets rate.
 	 *
 	 * @return the rate
 	 */
 	public int getRate() {
-		return rate;
+		return rating_rate;
 	}
 
 
@@ -56,8 +103,8 @@ public class Rating {
 	 *
 	 * @param id the id
 	 */
-	public void setRate(int rate) {
-		this.rate = rate;
+	public void setRate(int rating_rate) {
+		this.rating_rate = rating_rate;
 	}
 
 
