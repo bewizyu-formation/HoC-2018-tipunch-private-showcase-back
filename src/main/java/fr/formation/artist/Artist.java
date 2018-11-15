@@ -1,59 +1,76 @@
-
 package fr.formation.artist;
 
-import java.util.Collection;
+import java.util.Set;
 
 import javax.persistence.*;
 
 import fr.formation.Event.Event;
-import fr.formation.booking.Booking;
+import fr.formation.department.Department;
 import fr.formation.image.Image;
+import fr.formation.rating.Rating;
 import fr.formation.user.User;
 
 /**
  * the type Artist
  * @author adminHOC
- *
  */
 @Entity
-@Table(name = "artist")
 public class Artist {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	@GeneratedValue
+	private Long id;	
 	
-	@ OneToOne()
-	private User user;
+	@Column(unique = true, nullable = false)
+	private String artist_name;
+		
+	@Column(nullable = true)
+	private String artist_shortDesc;
 	
-	@OneToOne()
-	private Image image;
+	@Column(nullable = true)
+	private String artist_longDesc;
 	
-	@ManyToMany()
-	private Collection<Event> event;
+	@Column(nullable = true)
+	private String artist_phone ;
 	
-	@OneToMany()
-	private Collection<Booking> booking;
+	@Column(nullable = false)
+	private String artist_email;
+	
+	@Column(nullable = true)
+	private String artist_website;
+	
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(unique = true, nullable = false, name="imageId")
+//	private Image image;
+//	
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(unique = true, nullable = false, name="userId")
+//	private User user;
+	
+	public Artist(String artist_name, String artist_shortDesc, String artist_longDesc, 
+			String artist_phone, String artist_email, String artist_website, Image image, User user) {
+		this.artist_name = artist_name;
+		this.artist_shortDesc = artist_shortDesc;
+		this.artist_longDesc = artist_longDesc;
+		this.artist_phone = artist_phone;
+		this.artist_email = artist_email;
+		this.artist_website = artist_website;
+//		this.image = image;
+//		this.user = user;
+	}
+
+	
+//	@OneToMany(cascade = CascadeType.ALL)
+//	private Set<Rating> ratings;
+//	
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	private Set<Event> events;
+//	
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	private Set<Department> departments;
 	
 	
-	@Column(name = "artistName")
-	private String artistName;
-	
-	
-	@Column(name = "short_Description")
-	private String ShortDesc;
-	
-	@Column(name = "long_Description")
-	private String longDesc;
-	
-	@Column(name = "phone")
-	private String phone ;
-	
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name = "website")
-	private String website;
+
 	
 	
 	/**
@@ -82,7 +99,7 @@ public class Artist {
 	 * @return artistName
 	 */
 	public String getArtistName() {
-		return artistName;
+		return artist_name;
 	}
 
 
@@ -92,7 +109,7 @@ public class Artist {
 	 * @param artistName the artistName
 	 */
 	public void setArtistName( String artistName) {
-		this.artistName = artistName;
+		this.artist_name = artistName;
 	}
 	
 	/**
@@ -101,7 +118,7 @@ public class Artist {
 	 * @return the short_Description
 	 */
 	public String getShortDescription() {
-		return ShortDesc;
+		return artist_shortDesc;
 	}
 
 
@@ -110,8 +127,8 @@ public class Artist {
 	 *
 	 * @param short_Description the short_Description
 	 */
-	public void setShortDescription( String ShortDesc) {
-		this.ShortDesc = ShortDesc ;
+	public void setShortDescription( String shortDesc) {
+		this.artist_shortDesc = shortDesc ;
 	}
 	
 	/**
@@ -120,7 +137,7 @@ public class Artist {
 	 * @return long_Description
 	 */
 	public String getlongDescription() {
-		return longDesc;
+		return artist_longDesc;
 	}
 
 
@@ -130,7 +147,7 @@ public class Artist {
 	 * @param long_Description the long_Description
 	 */
 	public void setlongDescription( String longDesc) {
-		this.longDesc = longDesc ;
+		this.artist_longDesc = longDesc ;
 	}
 	
 	/**
@@ -139,7 +156,7 @@ public class Artist {
 	 * @return phone
 	 */
 	public String getPhone() {
-		return phone;
+		return artist_phone;
 	}
 
 
@@ -149,7 +166,7 @@ public class Artist {
 	 * @param phone the phone
 	 */
 	public void setPhone( String phone) {
-		this.phone = phone ;
+		this.artist_phone = phone ;
 	}
 	
 	/**
@@ -157,7 +174,7 @@ public class Artist {
 	 * @return email
 	 */
 	public String getEmail() {
-		return email;
+		return artist_email;
 	}
 	
 	/**
@@ -166,7 +183,7 @@ public class Artist {
 	 * @param email the email
 	 */
 	public void setEmail(String email ) {
-		this.email = email;
+		this.artist_email = email;
 	}
 	
 	/**
@@ -174,7 +191,7 @@ public class Artist {
 	 * @return website
 	 */
 	public String getWebsite() {
-		return website;
+		return artist_website;
 	}
 	
 	/**
@@ -183,7 +200,7 @@ public class Artist {
 	 * @param website the website
 	 */
 	public void setWebsite(String website ) {
-		this.website = website;
+		this.artist_website = website;
 	}
 	
 
