@@ -5,19 +5,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import fr.formation.Event.Event;
 import fr.formation.artist.Artist;
 
-import java.util.Collection;
+import java.util.Set;
 
 import java.util.Set;
 
 import javax.persistence.*;
 
 /**
- * The type User.
- */
+* The type User.
+*/
 @Entity
 public class User {
 
-	/**
+    /**
 	 * @param id
 	 * @param username
 	 * @param user_password
@@ -118,7 +118,6 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 
 	/**
 	 * Gets password.
@@ -223,12 +222,4 @@ public class User {
 	public void setDeptCode(String user_departementCode ) {
 		this.user_departementCode = user_departementCode;
 	}
-	
-	
-
-	
-	
-	
-	
-
 }
