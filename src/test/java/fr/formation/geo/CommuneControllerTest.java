@@ -31,7 +31,7 @@ public class CommuneControllerTest {
 		String authorizationHeader = mvcResult.getResponse().getHeader("Authorization");
 
 		mvc.perform(
-				get("/communes/nom?value=Amiens")
+				get("/public/communes/nom?value=Amiens")
 				.header("Authorization", authorizationHeader))
 				.andExpect(status().isOk()
 		)
