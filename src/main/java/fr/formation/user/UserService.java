@@ -12,6 +12,8 @@ import org.springframework.util.StringUtils;
 import java.util.Collection;
 import java.util.List;
 
+import fr.formation.security.SecurityConstants;
+
 /**
  * The type User service.
  */
@@ -65,23 +67,23 @@ public class UserService implements UserDetailsService {
 	 *
 	 * @param username the username
 	 * @param password the password
-	 * @param roles    the roles
-	 * @param email    the email 
+	 * @param email    the email
+	 * @param cityName the cityName
+	 * @param cityCode the cityCode
+	 * @param deptName the deptName
+	 * @param deptCode the deptCode
 	 */
-	public void addNewUser(String username,String password, String email, String cityName, 
-			String cityCode, String deptName, String deptCode, String... roles ) {
+	public User addNewUser(String username,String password, String email, String cityName, 
+			String cityCode, String deptName, String deptCode) {
 
 		User user = new User(username, password, email, cityName, cityCode, deptName, deptCode);
 		user = userRepository.save(user);
-
-		for (String role : roles) {
-
-			UserRole userRole = new UserRole();
-			userRole.setRole(role);
-			userRole.setUserId(user.getId());
-
-			userRoleRepository.save(userRole);
-		}
-
+		
+		UserRole userRole = new UserRole();
+		userRole.setRole(SecurityConstants.ROLE_USER);
+		userRole.setUserId(user.getId());
+		userRoleRepository.save(userRole);
+		
+		return user;
 	}
 }

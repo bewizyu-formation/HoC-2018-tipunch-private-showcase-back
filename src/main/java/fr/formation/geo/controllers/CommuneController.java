@@ -45,9 +45,22 @@ public class CommuneController {
 	 *
 	 * @return the communes
 	 */
-	@GetMapping("/")
-	public ResponseEntity<List<Commune>> getCommunes(@RequestParam final String nom) {
-		final List<Commune> communes = this.communeService.getCommunes(nom);
+	@GetMapping("/nom")
+	public ResponseEntity<List<Commune>> getCommunes(@RequestParam final String value) {
+		final List<Commune> communes = this.communeService.getCommunes(value);
+		return new ResponseEntity<>(communes, HttpStatus.OK);
+	}
+
+	/**
+	 * Gets communes by postal code.
+	 *
+	 * @param codePostal the postal code
+	 *
+	 * @return the communes
+	 */
+	@GetMapping("/codepostal")
+	public ResponseEntity<List<Commune>> getCommunesByPostalCode(@RequestParam final String value) {
+		final List<Commune> communes = this.communeService.getCommunes(value);
 		return new ResponseEntity<>(communes, HttpStatus.OK);
 	}
 

@@ -1,13 +1,6 @@
 package fr.formation.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-//
-////import fr.formation.Event.Event;
-//import fr.formation.artist.Artist;
-//
-//import java.util.Set;
-
-import fr.formation.artist.Artist;
 
 import javax.persistence.*;
 
@@ -19,25 +12,23 @@ import javax.persistence.*;
 public class User {
 
     /**
-	 * @param id
-	 * @param username
-	 * @param user_password
-	 * @param user_email
-	 * @param user_cityName
-	 * @param user_cityCode
-	 * @param user_departemantName
-	 * @param user_departementCode
-	 * @param user_role
+	 * @param username the username
+	 * @param password the password
+	 * @param email the email
+	 * @param cityName the city name
+	 * @param cityCode the city code
+	 * @param deptName the department name
+	 * @param deptCode the department code
 	 */
-	public User( String username, String user_password, String user_email, String user_cityName,
-			String user_cityCode, String user_departemantName, String user_departementCode) {
+	public User( String username, String password, String email, String cityName,
+			String cityCode, String deptName, String deptCode) {
 		this.username = username;
-		this.user_password = user_password;
-		this.user_email = user_email;
-		this.user_cityName = user_cityName;
-		this.user_cityCode = user_cityCode;
-		this.user_departemantName = user_departemantName;
-		this.user_departementCode = user_departementCode;
+		this.password = password;
+		this.email = email;
+		this.cityName = cityName;
+		this.cityCode = cityCode;
+		this.departmentName = deptName;
+		this.departmentCode = deptCode;
 	}
 
 
@@ -50,168 +41,91 @@ public class User {
 
 	@Column(nullable = false)
 	@JsonIgnore
-	private String user_password;
+	private String password;
 	
 	@Column(unique = true, nullable = false)
-	private String user_email;
+	private String email;
 	
 	@Column(nullable = false)
-	private String user_cityName;
+	private String cityName;
 	
 	@Column(nullable = false)
-	private String user_cityCode;
+	private String cityCode;
 	
 	@Column(nullable = false)
-	private String user_departemantName;
+	private String departmentName;
 	
 	@Column(nullable = false)
-	private String user_departementCode;	
+	private String departmentCode;
+
+
 
 //	
 //	@OneToMany(mappedBy ="user")
 //	private Set<Event> events ;
-	
-	
-	/**
-	 * Gets id.
-	 *
-	 * @return the id
-	 */
+
+
 	public Long getId() {
 		return id;
 	}
 
-
-	/**
-	 * Sets id.
-	 *
-	 * @param id the id
-	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-	/**
-	 * Gets user_name.
-	 *
-	 * @return the user_name
-	 */
 	public String getUsername() {
 		return username;
 	}
 
-
-	/**
-	 * Sets user_name.
-	 *
-	 * @param username the user_name
-	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	/**
-	 * Gets password.
-	 *
-	 * @return the password
-	 */
 	public String getPassword() {
-		return user_password;
+		return password;
 	}
 
-
-	/**
-	 * Sets password.
-	 *
-	 * @param password the password
-	 */
-	public void setPassword(String user_password) {
-		this.user_password = user_password;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
-	/**
-	 * Gets email
-	 * @return email
-	 */
+
 	public String getEmail() {
-		return user_email;
+		return email;
 	}
-	
-	/**
-	 * Sets email.
-	 *
-	 * @param email the email
-	 */
-	public void setEmail(String user_email ) {
-		this.user_email = user_email;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	
-	/**
-	 * Gets cityName
-	 * @return cityName
-	 */
+
 	public String getCityName() {
-		return user_cityName;
+		return cityName;
 	}
-	
-	/**
-	 * Sets cityName.
-	 *
-	 * @param cityName the CityName
-	 */
-	public void setCityName(String user_cityName ) {
-		this.user_cityName = user_cityName;
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
-	
-	/**
-	 * Gets cityCode
-	 * @return cityName
-	 */
+
 	public String getCityCode() {
-		return user_cityName;
+		return cityCode;
 	}
-	
-	/**
-	 * Sets cityCode.
-	 *
-	 * @param cityCode the CityCode
-	 */
-	public void setCityCode(String user_cityCode ) {
-		this.user_cityCode = user_cityCode;
+
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
 	}
-	
-	/**
-	 * Gets deptName
-	 * @return deptName
-	 */
-	public String getDepartementName() {
-		return user_departemantName;
+
+	public String getDepartmentName() {
+		return departmentName;
 	}
-	
-	/**
-	 * Sets deptName.
-	 *
-	 * @param cityCode the CityCode
-	 */
-	public void setDepartemantName(String user_departeamntName ) {
-		this.user_departemantName = user_departeamntName;
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
-	
-	/**
-	 * Gets deptCode
-	 * @return deptCode
-	 */
-	public String getDeptCode() {
-		return user_departementCode;
+
+	public String getDepartmentCode() {
+		return departmentCode;
 	}
-	
-	/**
-	 * Sets deptCode.
-	 *
-	 * @param deptCode the deptCode
-	 */
-	public void setDeptCode(String user_departementCode ) {
-		this.user_departementCode = user_departementCode;
+
+	public void setDepartmentCode(String departmentCode) {
+		this.departmentCode = departmentCode;
 	}
 }
