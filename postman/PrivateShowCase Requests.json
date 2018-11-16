@@ -136,17 +136,18 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{uri}}/public/communes?nom=lyo",
+					"raw": "{{uri}}/public/communes/nom?value=lyo",
 					"host": [
 						"{{uri}}"
 					],
 					"path": [
 						"public",
-						"communes"
+						"communes",
+						"nom"
 					],
 					"query": [
 						{
-							"key": "nom",
+							"key": "value",
 							"value": "lyo"
 						}
 					]
@@ -165,17 +166,18 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{uri}}/public/communes?codePostal=69001",
+					"raw": "{{uri}}/public/communes/codepostal?value=69001",
 					"host": [
 						"{{uri}}"
 					],
 					"path": [
 						"public",
-						"communes"
+						"communes",
+						"codepostal"
 					],
 					"query": [
 						{
-							"key": "codePostal",
+							"key": "value",
 							"value": "69001"
 						}
 					]
@@ -199,16 +201,17 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{uri}}/departements?nom=Ain",
+					"raw": "{{uri}}/departements/nom?value=Ain",
 					"host": [
 						"{{uri}}"
 					],
 					"path": [
-						"departements"
+						"departements",
+						"nom"
 					],
 					"query": [
 						{
-							"key": "nom",
+							"key": "value",
 							"value": "Ain"
 						}
 					]
@@ -232,16 +235,17 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{uri}}/departements?code=01",
+					"raw": "{{uri}}/departements/code?value=01",
 					"host": [
 						"{{uri}}"
 					],
 					"path": [
-						"departements"
+						"departements",
+						"code"
 					],
 					"query": [
 						{
-							"key": "code",
+							"key": "value",
 							"value": "01"
 						}
 					]

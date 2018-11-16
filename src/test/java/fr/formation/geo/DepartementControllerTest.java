@@ -52,7 +52,7 @@ public class DepartementControllerTest {
 		String authorizationHeader = mvcResult.getResponse().getHeader("Authorization");
 
 		mvc.perform(
-				get("/departements/01")
+				get("/departements/code?value=01")
 						.header("Authorization", authorizationHeader))
 				.andExpect(status().isOk()
 				)
