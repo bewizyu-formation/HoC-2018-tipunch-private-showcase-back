@@ -1,5 +1,13 @@
 package fr.formation.user;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fr.formation.geo.controllers.DepartementController;
+import fr.formation.geo.model.Departement;
+import fr.formation.geo.services.DepartementService;
+import fr.formation.hello.HelloController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -9,8 +17,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import fr.formation.security.SecurityConstants;
 
 /**
  * The type User service.
@@ -18,9 +29,11 @@ import java.util.List;
 @Service
 public class UserService implements UserDetailsService {
 
-	private UserRepository userRepository;
+	Logger logger = LoggerFactory.getLogger(UserService.class);
 
+	private UserRepository userRepository;
 	private UserRoleRepository userRoleRepository;
+	private DepartementService departementService;
 
 	/**
 	 * Instantiates a new User service.
@@ -29,15 +42,16 @@ public class UserService implements UserDetailsService {
 	 * @param userRoleRepository the user role repository
 	 */
 	@Autowired
-	public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository) {
+	public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, DepartementService departementService) {
 		this.userRepository = userRepository;
 		this.userRoleRepository = userRoleRepository;
+		this.departementService = departementService;
 	}
 
 	/**
 	 * transform a list of roles (as {@link String}) into a list of {@link GrantedAuthority}
 	 *
-	 * @param userRoles
+	 * @param userRoles the user roles list
 	 *
 	 * @return
 	 */
@@ -65,23 +79,34 @@ public class UserService implements UserDetailsService {
 	 *
 	 * @param username the username
 	 * @param password the password
-	 * @param roles    the roles
+	 * @param email    the email
+	 * @param cityName the cityName
+	 * @param cityCode the cityCode
+	 * @param deptCode the deptCode
 	 */
-	public void addNewUser(String username, String password, String... roles) {
+	public User addNewUser(String username,String password, String email, String cityName, 
+			String cityCode, String deptCode) {
 
-		User user = new User();
-		user.setUsername(username);
-		user.setPassword(password);
+		List<Departement> departmentName = departementService.getDepartementByCode(deptCode);
+		logger.info("Départements by code ", departmentName, deptCode);
+
+		String deptName = departmentName.get(0).getNom();
+
+		User user = new User(username, password, email, cityName, cityCode, deptName, deptCode);
 		user = userRepository.save(user);
 
-		for (String role : roles) {
-
+		if (username == "admin") {
 			UserRole userRole = new UserRole();
-			userRole.setRole(role);
+			userRole.setRole(SecurityConstants.ROLE_ADMIN);
 			userRole.setUserId(user.getId());
-
+			userRoleRepository.save(userRole);
+		} else {
+			UserRole userRole = new UserRole();
+			userRole.setRole(SecurityConstants.ROLE_USER);
+			userRole.setUserId(user.getId());
 			userRoleRepository.save(userRole);
 		}
+		return user;
 
 	}
 }

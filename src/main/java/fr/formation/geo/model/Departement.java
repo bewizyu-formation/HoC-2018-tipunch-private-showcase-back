@@ -11,19 +11,15 @@ public class Departement implements Serializable {
 
 	private String code;
 
-	private String codeRegion;
-
 	/**
 	 * Create a Departement
 	 *
-	 * @param nom        the nom
-	 * @param code       the code
-	 * @param codeRegion the code region
+	 * @param nom  the nom
+	 * @param code the code
 	 */
-	public Departement(String nom, String code, String codeRegion) {
+	public Departement(String nom, String code) {
 		this.nom = nom;
 		this.code = code;
-		this.codeRegion = codeRegion;
 	}
 
 	/**
@@ -68,21 +64,4 @@ public class Departement implements Serializable {
 		this.code = code;
 	}
 
-	/**
-	 * Gets code region.
-	 *
-	 * @return the code region
-	 */
-	public String getCodeRegion() {
-		return codeRegion;
-	}
-
-	/**
-	 * Sets code region.
-	 *
-	 * @param codeRegion the code region
-	 */
-	public void setCodeRegion(String codeRegion) {
-		this.codeRegion = codeRegion;
-	}
 }

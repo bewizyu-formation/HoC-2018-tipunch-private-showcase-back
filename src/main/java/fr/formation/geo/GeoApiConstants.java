@@ -31,23 +31,23 @@ public class GeoApiConstants {
 	public static final String PARAMS_NOM = "nom";
 
 	/**
+	 * The constant PARAMS_CODEPOSTAL.
+	 */
+	public static final String PARAMS_CODEPOSTAL = "codePostal";
+
+	/**
 	 * The constant PARAMS_CODE.
 	 */
 	public static final String PARAMS_CODE = "code";
-	
-	/**
-	 * The constant PARAMS_POSTALCODE.
-	 */
-	public static final String PARAMS_POSTALCODE = "codePostal";
 
 	/**
 	 * The constant COMMUNE_FIELDS_VALUES.
 	 */
-	public static final String COMMUNE_FIELDS_VALUES = "nom,code,codesPostaux,codeDepartement,codeRegion";
+	public static final String COMMUNE_FIELDS_VALUES = "nom,codesPostaux,codeDepartement";
 
 	/**
 	 * The constant DEPARTEMENT_FIELDS_VALUES.
 	 */
-	public static final String DEPARTEMENT_FIELDS_VALUES = "nom,code,codeRegion";
+	public static final String DEPARTEMENT_FIELDS_VALUES = "nom,code";
 
 }

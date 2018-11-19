@@ -15,8 +15,8 @@ import java.util.List;
  * The type Departement controller.
  */
 @RestController
-@RequestMapping("/departements")
 @Secured(SecurityConstants.ROLE_USER)
+@RequestMapping("/departements")
 public class DepartementController {
 
 	private DepartementService departementService;
@@ -34,26 +34,26 @@ public class DepartementController {
 	/**
 	 * Gets departement.
 	 *
-	 * @param nom the nom
+	 * @param value the nom
 	 *
 	 * @return the departement
 	 */
-	@GetMapping(value = "", params = "nom")
-	public ResponseEntity<List<Departement>> getDepartement(@RequestParam("nom") final String nom) {
-		final List<Departement> departements = this.departementService.getDepartement(nom);
+	@GetMapping("/nom")
+	public ResponseEntity<List<Departement>> getDepartement(@RequestParam final String value) {
+		final List<Departement> departements = this.departementService.getDepartement(value);
 		return new ResponseEntity<>(departements, HttpStatus.OK);
 	}
 
 	/**
 	 * Gets departement by code.
 	 *
-	 * @param code the code
+	 * @param value the code
 	 *
 	 * @return the departement by code
 	 */
-	@GetMapping(value = "", params = "code")
-	public ResponseEntity<List<Departement>> getDepartementByCode(@RequestParam("code") final String code) {
-		final List<Departement> departements = this.departementService.getDepartementByCode(code);
+	@GetMapping("/code")
+	public ResponseEntity<List<Departement>> getDepartementByCode(@RequestParam final String value) {
+		final List<Departement> departements = this.departementService.getDepartementByCode(value);
 		return new ResponseEntity<>(departements, HttpStatus.OK);
 	}
 }

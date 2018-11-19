@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-
 /**
  * The type Commune controller.
  */
@@ -39,26 +38,26 @@ public class CommunePublicController {
 	/**
 	 * Gets communes.
 	 *
-	 * @param nom the nom
+	 * @param value the nom
 	 *
 	 * @return the communes
 	 */
-	@GetMapping(value = "", params = "nom")
-	public ResponseEntity<List<Commune>> getCommunes(@RequestParam("nom") final String nom) {
-		final List<Commune> communes = this.communeService.getCommunes(nom);
+	@GetMapping("/nom")
+	public ResponseEntity<List<Commune>> getCommunes(@RequestParam final String value) {
+		final List<Commune> communes = this.communeService.getCommunes(value);
 		return new ResponseEntity<>(communes, HttpStatus.OK);
 	}
-	
+
 	/**
-	 * Gets communes by Postal Code.
+	 * Gets communes by postal code.
 	 *
-	 * @param postalcode the Postal Code
+	 * @param  value the postal code
 	 *
 	 * @return the communes
 	 */
-	@GetMapping(value = "", params = "codePostal")
-	public ResponseEntity<List<Commune>> getCommunesByPostalCode(@RequestParam("codePostal") final String postalcode) {
-		final List<Commune> communes = this.communeService.getCommunesByPostalCode(postalcode);
+	@GetMapping("/codepostal")
+	public ResponseEntity<List<Commune>> getCommunesByPostalCode(@RequestParam final String value) {
+		final List<Commune> communes = this.communeService.getCommunesByPostalCode(value);
 		return new ResponseEntity<>(communes, HttpStatus.OK);
 	}
 

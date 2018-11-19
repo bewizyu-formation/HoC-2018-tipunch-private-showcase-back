@@ -6,7 +6,6 @@ import javax.persistence.*;
  * The type User role.
  */
 @Entity
-@Table(name = "user_roles")
 public class UserRole {
 
 	@Id

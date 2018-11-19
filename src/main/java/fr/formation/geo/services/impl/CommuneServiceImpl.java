@@ -49,10 +49,11 @@ public class CommuneServiceImpl implements CommuneService {
 	}
 
 	@Override
-	public List<Commune> getCommunesByPostalCode(String postalcode) {
+	public List<Commune> getCommunesByPostalCode(String codePostal) {
+
 		UriComponentsBuilder builder = UriComponentsBuilder
 				.fromUriString(GeoApiConstants.GEO_API_BASE_URL + GeoApiConstants.RESOURCE_COMMUNE)
-				.queryParam(GeoApiConstants.PARAMS_POSTALCODE, postalcode)
+				.queryParam(GeoApiConstants.PARAMS_CODEPOSTAL, codePostal)
 				.queryParam(GeoApiConstants.PARAMS_FIELDS, GeoApiConstants.COMMUNE_FIELDS_VALUES);
 
 		return this.restTemplate.getForObject(
