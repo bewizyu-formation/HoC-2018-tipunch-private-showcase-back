@@ -43,11 +43,11 @@ public class GeoApiConstants {
 	/**
 	 * The constant COMMUNE_FIELDS_VALUES.
 	 */
-	public static final String COMMUNE_FIELDS_VALUES = "nom,code,codesPostaux,codeDepartement,codeRegion";
+	public static final String COMMUNE_FIELDS_VALUES = "nom,codesPostaux,codeDepartement";
 
 	/**
 	 * The constant DEPARTEMENT_FIELDS_VALUES.
 	 */
-	public static final String DEPARTEMENT_FIELDS_VALUES = "nom,code,codeRegion";
+	public static final String DEPARTEMENT_FIELDS_VALUES = "nom,code";
 
 }

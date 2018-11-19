@@ -36,16 +36,24 @@ public class BoostrapData {
 	@EventListener(ContextRefreshedEvent.class)
 	public void onStart() {
 
-//		userService.addNewUser(
-//				"admin",
-//				passwordEncoder.encode("admin"),
-//				SecurityConstants.ROLE_ADMIN
-//		);
-//		userService.addNewUser(
-//				"user",
-//				passwordEncoder.encode("user"),
-//				SecurityConstants.ROLE_USER
-//		);
+		userService.addNewUser(
+				"admin",
+				passwordEncoder.encode("admin"),
+				"admin@admin.fr",
+				"adminCity",
+				"adminCode",
+				"adminDept",
+				"adminCodeDept"
+		);
+		userService.addNewUser(
+				"user",
+				passwordEncoder.encode("user"),
+				"user@user.fr",
+				"userCity",
+				"userCode",
+				"userDept",
+				"userCodeDept"
+		);
 	}
 
 }

@@ -78,12 +78,19 @@ public class UserService implements UserDetailsService {
 
 		User user = new User(username, password, email, cityName, cityCode, deptName, deptCode);
 		user = userRepository.save(user);
-		
-		UserRole userRole = new UserRole();
-		userRole.setRole(SecurityConstants.ROLE_USER);
-		userRole.setUserId(user.getId());
-		userRoleRepository.save(userRole);
-		
+
+		if (username == "admin") {
+			UserRole userRole = new UserRole();
+			userRole.setRole(SecurityConstants.ROLE_ADMIN);
+			userRole.setUserId(user.getId());
+			userRoleRepository.save(userRole);
+		} else {
+			UserRole userRole = new UserRole();
+			userRole.setRole(SecurityConstants.ROLE_USER);
+			userRole.setUserId(user.getId());
+			userRoleRepository.save(userRole);
+		}
 		return user;
+
 	}
 }

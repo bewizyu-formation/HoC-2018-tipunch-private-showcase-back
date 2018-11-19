@@ -43,7 +43,6 @@ public class HelloController {
 	@GetMapping("/user")
 	Hello sayHelloUser() {
 		Object security = SecurityContextHolder.getContext().getAuthentication().getCredentials();
-		System.out.println(security);
 		return new Hello("Hello User!");
 	}
 
