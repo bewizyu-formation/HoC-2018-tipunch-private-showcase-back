@@ -15,8 +15,8 @@ import java.util.List;
  * The type Departement controller.
  */
 @RestController
-@RequestMapping("/departements")
 @Secured(SecurityConstants.ROLE_USER)
+@RequestMapping("/departements")
 public class DepartementController {
 
 	private DepartementService departementService;
@@ -34,7 +34,7 @@ public class DepartementController {
 	/**
 	 * Gets departement.
 	 *
-	 * @param nom the nom
+	 * @param value the nom
 	 *
 	 * @return the departement
 	 */
@@ -47,7 +47,7 @@ public class DepartementController {
 	/**
 	 * Gets departement by code.
 	 *
-	 * @param code the code
+	 * @param value the code
 	 *
 	 * @return the departement by code
 	 */

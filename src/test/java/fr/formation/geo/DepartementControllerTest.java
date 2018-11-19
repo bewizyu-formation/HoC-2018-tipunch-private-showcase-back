@@ -38,8 +38,6 @@ public class DepartementControllerTest {
 						"    {\n" +
 						"        \"nom\": \"Ain\",\n" +
 						"        \"code\": \"01\",\n" +
-						"        \"codeRegion\": \"84\",\n" +
-						"        \"_score\": 1\n" +
 						"    }\n" +
 						"]"))
 				.andExpect(authenticated().withUsername("user"));
@@ -56,7 +54,7 @@ public class DepartementControllerTest {
 						.header("Authorization", authorizationHeader))
 				.andExpect(status().isOk()
 				)
-				.andExpect(content().json("[{\"nom\":\"Ain\",\"code\":\"01\",\"codeRegion\":\"84\"}]"))
+				.andExpect(content().json("[{\"nom\":\"Ain\",\"code\":\"01\"}]"))
 				.andExpect(authenticated().withUsername("user"));
 	}
 

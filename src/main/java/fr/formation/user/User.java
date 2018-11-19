@@ -31,6 +31,8 @@ public class User {
 		this.departmentCode = deptCode;
 	}
 
+	public User() {};
+
 
 	@Id
 	@GeneratedValue

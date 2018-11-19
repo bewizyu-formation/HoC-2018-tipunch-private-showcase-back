@@ -4,6 +4,9 @@ import fr.formation.geo.GeoApiConstants;
 import fr.formation.geo.model.Departement;
 import fr.formation.geo.services.DepartementService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -37,10 +40,14 @@ public class DepartementServiceImpl implements DepartementService {
 				.queryParam(GeoApiConstants.PARAMS_NOM, nom)
 				.queryParam(GeoApiConstants.PARAMS_FIELDS, GeoApiConstants.COMMUNE_FIELDS_VALUES);
 
-		return this.restTemplate.getForObject(
+		ResponseEntity<List<Departement>> response = this.restTemplate.exchange(
 				builder.toUriString(),
-				List.class
+				HttpMethod.GET,
+				null,
+				new ParameterizedTypeReference<List<Departement>>(){}
 		);
+
+		return response.getBody();
 	}
 
 	@Override
@@ -50,10 +57,14 @@ public class DepartementServiceImpl implements DepartementService {
 				.queryParam(GeoApiConstants.PARAMS_CODE, code)
 				.queryParam(GeoApiConstants.PARAMS_FIELDS, GeoApiConstants.DEPARTEMENT_FIELDS_VALUES);
 
-		return this.restTemplate.getForObject(
+		ResponseEntity<List<Departement>> response = this.restTemplate.exchange(
 				builder.toUriString(),
-				List.class
+				HttpMethod.GET,
+				null,
+				new ParameterizedTypeReference<List<Departement>>(){}
 		);
+
+		return response.getBody();
 	}
 
 }

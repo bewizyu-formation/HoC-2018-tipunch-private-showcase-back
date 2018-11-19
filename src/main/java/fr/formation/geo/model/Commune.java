@@ -20,13 +20,11 @@ public class Commune implements Serializable {
 	 * Instantiates a new Commune.
 	 *
 	 * @param nom             the nom
-	 * @param code            the code
 	 * @param codeDepartement the code departement
 	 * @param codesPostaux    the codes postaux
 	 */
-	public Commune(String nom, String code, String codeDepartement, Set<String> codesPostaux) {
+	public Commune(String nom, String codeDepartement, Set<String> codesPostaux) {
 		this.nom = nom;
-		this.code = code;
 		this.codeDepartement = codeDepartement;
 		this.codesPostaux = codesPostaux;
 	}
@@ -53,24 +51,6 @@ public class Commune implements Serializable {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	/**
-	 * Gets code.
-	 *
-	 * @return the code
-	 */
-	public String getCode() {
-		return code;
-	}
-
-	/**
-	 * Sets code.
-	 *
-	 * @param code the code
-	 */
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	/**

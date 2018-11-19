@@ -45,7 +45,6 @@ public class CommuneControllerTest {
 				"            \"80090\"\n" +
 				"        ],\n" +
 				"        \"codeDepartement\": \"80\",\n" +
-				"        \"codeRegion\": \"32\",\n" +
 				"        \"_score\": 1\n" +
 				"    },\n" +
 				"    {\n" +
@@ -55,7 +54,6 @@ public class CommuneControllerTest {
 				"            \"80470\"\n" +
 				"        ],\n" +
 				"        \"codeDepartement\": \"80\",\n" +
-				"        \"codeRegion\": \"32\",\n" +
 				"        \"_score\": 0.6809910623997033\n" +
 				"    }\n" +
 				"]"))

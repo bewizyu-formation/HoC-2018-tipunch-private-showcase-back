@@ -42,8 +42,8 @@ public class BoostrapData {
 				"admin@admin.fr",
 				"adminCity",
 				"adminCode",
-				"adminDept",
-				"adminCodeDept"
+				"01"
+
 		);
 		userService.addNewUser(
 				"user",
@@ -51,8 +51,7 @@ public class BoostrapData {
 				"user@user.fr",
 				"userCity",
 				"userCode",
-				"userDept",
-				"userCodeDept"
+				"02"
 		);
 	}
 

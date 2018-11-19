@@ -26,10 +26,10 @@ public class UserController {
 	 */
 	@PutMapping("/add")
 	public User signup(@RequestParam String username, @RequestParam String password, @RequestParam String email,
-					   @RequestParam String cityName, @RequestParam String cityCode, @RequestParam String deptName, @RequestParam String deptCode,
+					   @RequestParam String cityName, @RequestParam String cityCode, @RequestParam String deptCode,
 					   @RequestParam(required = false) String artistName, @RequestParam(required = false) String shortDesc) {
 		
-		User user = userService.addNewUser(username, password, email, cityName, cityCode, deptName, deptCode);
+		User user = userService.addNewUser(username, password, email, cityName, cityCode, deptCode);
 		
 		if(artistName != null && shortDesc != null) {
 		artistService.addNewArtist(artistName,  shortDesc,  null, null, null, null, user);
