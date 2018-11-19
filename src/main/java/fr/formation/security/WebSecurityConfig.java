@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/swagger-ui.html")//
 				.antMatchers("/configuration/**")//
 				.antMatchers("/webjars/**")//
-				.antMatchers("/public");
+				.antMatchers("/public/**");
 	}
 
 	@Override
@@ -41,6 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/v2/api-docs").permitAll()
 				.antMatchers("/swagger-ui.html").permitAll()
 				.antMatchers("/health/").permitAll()
+				.antMatchers("/public/**").permitAll()
 				.antMatchers(HttpMethod.PUT, "/users/").permitAll()
 				.antMatchers(HttpMethod.POST, "/login").permitAll()
 				.anyRequest().authenticated()

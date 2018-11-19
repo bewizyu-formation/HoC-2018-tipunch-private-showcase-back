@@ -20,4 +20,13 @@ public interface CommuneService {
 	 */
 	List<Commune> getCommunes(final String nom);
 
+	/**
+	 * Gets communes by postal code.
+	 *
+	 * @param codePostal the postal code
+	 *
+	 * @return the communes
+	 */
+	List<Commune> getCommunesByPostalCode(String codePostal);
+
 }
