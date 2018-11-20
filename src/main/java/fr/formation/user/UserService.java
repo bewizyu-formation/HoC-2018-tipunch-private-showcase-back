@@ -1,8 +1,11 @@
 package fr.formation.user;
 
-import fr.formation.artist.ArtistService;
+
+import fr.formation.artist.Artist;
+import fr.formation.artist.ArtistRepository;
 import fr.formation.geo.model.Departement;
 import fr.formation.geo.services.DepartementService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +17,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+
 
 import fr.formation.security.SecurityConstants;
 
@@ -30,7 +36,7 @@ public class UserService implements UserDetailsService {
 	private UserRepository userRepository;
 	private UserRoleRepository userRoleRepository;
 	private DepartementService departementService;
-	private ArtistService artistService;
+	private ArtistRepository artistRepository;
 
 	/**
 	 * Instantiates a new User service.
@@ -39,10 +45,11 @@ public class UserService implements UserDetailsService {
 	 * @param userRoleRepository the user role repository
 	 */
 	@Autowired
-	public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, DepartementService departementService) {
+	public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, ArtistRepository artistRepository, DepartementService departementService) {
 		this.userRepository = userRepository;
 		this.userRoleRepository = userRoleRepository;
 		this.departementService = departementService;
+		this.artistRepository = artistRepository;
 	}
 
 	/**
@@ -79,6 +86,21 @@ public class UserService implements UserDetailsService {
 			throw new UsernameNotFoundException("No user exists with username: " + username);
 		}
 	}
+	/**
+	 * 
+	 * @param user
+	 * @param artist
+	 * @return
+	 */
+	public UserInfoDTO getUserInfo(User user) {
+
+
+		Artist artist = artistRepository.findArtistByUser_Id(user.getId());
+		UserInfoDTO userInfoDTO = new UserInfoDTO( artist.getId(), user.getUsername(), artist.getArtistName(), user.getDepartmentCode());
+		
+		return userInfoDTO;
+		}
+	
 
 	/**
 	 * Add a new user with the user repository
