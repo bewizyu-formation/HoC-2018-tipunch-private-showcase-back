@@ -31,7 +31,7 @@ public class User {
 		this.departmentCode = deptCode;
 	}
 
-	public User() {};
+	public User() {}
 
 
 	@Id

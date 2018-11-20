@@ -1,11 +1,8 @@
 package fr.formation.user;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.formation.geo.controllers.DepartementController;
+import fr.formation.artist.ArtistService;
 import fr.formation.geo.model.Departement;
 import fr.formation.geo.services.DepartementService;
-import fr.formation.hello.HelloController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,6 +30,7 @@ public class UserService implements UserDetailsService {
 	private UserRepository userRepository;
 	private UserRoleRepository userRoleRepository;
 	private DepartementService departementService;
+	private ArtistService artistService;
 
 	/**
 	 * Instantiates a new User service.
@@ -62,16 +59,25 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(username);
+		User user = findUserByUsername(username);
+		List<String> roles = userRoleRepository.findRoleByUserName(username);
+		return new org.springframework.security.core.userdetails.User(username, user.getPassword(),
+				transformToAuthorities(roles));
+	}
 
+	/**
+	 * findUserByUsername.
+	 * @param username
+	 * @return user
+	 * @throws UsernameNotFoundException
+	 */
+	public User findUserByUsername (String username) throws UsernameNotFoundException {
+		User user = userRepository.findByUsername(username);
 		if (user != null) {
-			List<String> roles = userRoleRepository.findRoleByUserName(username);
-			return new org.springframework.security.core.userdetails.User(username, user.getPassword(),
-					transformToAuthorities(roles));
-		} else {
+			return user;
+		}  else {
 			throw new UsernameNotFoundException("No user exists with username: " + username);
 		}
-
 	}
 
 	/**
@@ -107,6 +113,5 @@ public class UserService implements UserDetailsService {
 			userRoleRepository.save(userRole);
 		}
 		return user;
-
 	}
 }
