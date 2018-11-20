@@ -45,10 +45,11 @@ public class UserService implements UserDetailsService {
 	 * @param userRoleRepository the user role repository
 	 */
 	@Autowired
-	public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, DepartementService departementService) {
+	public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, ArtistRepository artistRepository, DepartementService departementService) {
 		this.userRepository = userRepository;
 		this.userRoleRepository = userRoleRepository;
 		this.departementService = departementService;
+		this.artistRepository = artistRepository;
 	}
 
 	/**
@@ -91,30 +92,15 @@ public class UserService implements UserDetailsService {
 	 * @param artist
 	 * @return
 	 */
-	public UserInfoDTO getUserInfo(final User user, final Artist artist) {
+	public UserInfoDTO getUserInfo(User user) {
 
-		UserInfoDTO getUser = new UserInfoDTO(user.getUsername(),artist.getArtistName(),user.getDepartmentCode());
+
+		Artist artist = artistRepository.findArtistByUser_Id(user.getId());
+		UserInfoDTO userInfoDTO = new UserInfoDTO( artist.getId(), user.getUsername(), artist.getArtistName(), user.getDepartmentCode());
 		
-//		getUserInfo.getuserName();
-//		getUserInfo.getArtistName();
-//		getUserInfo.getDepartementCode();
-//		List<Departement> departmentName = departementService.getDepartementByCode(deptCode);-
-
-		return getUser;
+		return userInfoDTO;
 		}
 	
-	public UserInfoDTO getUserInfo2( String username, String artistname, String departmentCode) {
-		
-		userRepository.findByUsername(username);
-		artistRepository.findByArtstName(artistname);
-		List<Departement> deptCode =  departementService.getDepartementByCode(departmentCode);
-		logger.info("Départements by code ", deptCode , departmentCode);
-		String departCode  = deptCode.get(0).getCode();
-		
-		UserInfoDTO getUser = new UserInfoDTO(userRepository.findByUsername(username),artistRepository.findByArtstName(artistname), departCode); 
-		
-		return getUser ;
-	}
 
 	/**
 	 * Add a new user with the user repository

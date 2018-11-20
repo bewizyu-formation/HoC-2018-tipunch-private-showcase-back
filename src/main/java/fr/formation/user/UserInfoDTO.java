@@ -2,42 +2,43 @@ package fr.formation.user;
 
 import java.io.Serializable;
 
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import fr.formation.artist.Artist;
 
 
-/**
- * The type UserInfoDTO.
- */
 public class UserInfoDTO implements Serializable {
 	
+    /**
+	 * 
+	 */
 	private static final long serialVersionUID = -5639803855314477341L;
+
+
+
+    private Long artistId;
+	@NotNull
+	private String username;
 	
-	@NotNull
-    private Long id;
-	@NotNull
-	private @NotNull User username;
+	private String artist_name;
 	
-	@NotNull
-	private Artist artist_name;
-	
-	@NotNull
 	private String departmentCode;
 	
-	public UserInfoDTO(@NotNull User user, @NotNull Artist artist, @NotNull String departmentCode) {
+	public UserInfoDTO( Long artistId, @NotNull String username, String artist_name, @NotNull String departmentCode) {
 		super();
-		this.username = user;
-		this.artist_name = artist;
+		this.artistId = artistId;
+		this.username = username;
+		this.artist_name = artist_name;
 		this.departmentCode = departmentCode;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getArtistId() {
+
+		return artistId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setArtistId(Long artistId) {
+		this.artistId = artistId;
 	}
 	
 	
@@ -46,7 +47,7 @@ public class UserInfoDTO implements Serializable {
 	 *
 	 * @return the username
 	 */
-	public @NotNull User getuserName() {
+	public String getuserName() {
 		return username;
 	}
 
@@ -55,7 +56,7 @@ public class UserInfoDTO implements Serializable {
 	 *
 	 * @param username the username
 	 */
-	public void setUserName( User username) {
+	public void setUserName(String username) {
 		this.username = username;
 	}
 	
@@ -64,7 +65,7 @@ public class UserInfoDTO implements Serializable {
 	 *
 	 * @return artistName
 	 */
-	public @NotNull Artist getArtistName() {
+	public String getArtistName() {
 		return artist_name;
 	}
 
@@ -74,7 +75,7 @@ public class UserInfoDTO implements Serializable {
 	 *
 	 * @param artistName the artistName
 	 */
-	public void setArtistName( Artist artistName) {
+	public void setArtistName( String artistName) {
 		this.artist_name = artistName;
 	}
 	
