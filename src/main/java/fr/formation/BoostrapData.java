@@ -38,6 +38,15 @@ public class BoostrapData {
 	public void onStart() {
 
 		userService.addNewUser(
+				"admin",
+				passwordEncoder.encode("admin"),
+				"admin@admin.fr",
+				"adminCity",
+				"adminCode",
+				"01"
+		);
+
+		userService.addNewUser(
 				"user",
 				passwordEncoder.encode("user"),
 				"user@user.fr",
