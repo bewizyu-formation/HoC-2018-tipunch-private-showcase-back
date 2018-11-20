@@ -1,6 +1,6 @@
 package fr.formation.artist;
 
-//import java.util.Set;
+
 
 import javax.persistence.*;
 import javax.persistence.Column;
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import fr.formation.user.User;
+
+import static javax.persistence.CascadeType.*;
 
 /**
  * the type Artist
@@ -46,7 +48,7 @@ public class Artist {
 //	@JoinColumn(unique = true, nullable = false, name="imageId")
 //	private Image image;
 	
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade={MERGE, REMOVE, REFRESH, DETACH})
 	private User user;
 
 	public Artist() {}
