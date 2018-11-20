@@ -28,15 +28,13 @@ public class ArtistController extends AbstractController {
 	@PutMapping("/add")
 	public void createArtist(@RequestParam String artist_name, @RequestParam String artist_shortDesc, @RequestParam String artist_longDesc, 
 			@RequestParam String artist_phone, @RequestParam String artist_email, @RequestParam String artist_website) {
-		
-//		String user = SecurityContextHolder.getContext().getAuthentication().getName();
-//		
-//		artistService.addNewArtist( artist_name,  artist_shortDesc,  artist_longDesc, 
-//				 artist_phone,  artist_email,  artist_website, user);
+
+		User user = super.getAuthenticatedUser();
+		artistService.addNewArtist( artist_name,  artist_shortDesc,  artist_longDesc, artist_phone,  artist_email,  artist_website, user);
 	}
 
 	@GetMapping("/list")
-	public List<Artist> getArtistFromDepartement() {
+	public List<Artist> getArtistsFromDepartement() {
 		User user = super.getAuthenticatedUser();
 		return artistService.findArtistsByDepartementCode(user.getDepartmentCode());
 	}

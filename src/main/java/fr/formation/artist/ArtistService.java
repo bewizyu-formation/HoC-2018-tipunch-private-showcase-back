@@ -50,7 +50,7 @@ public class ArtistService {
 	}
 
 	public List<Artist> findArtistsByDepartementCode (final String codeDepartement) {
-		return null;
+		return artistRepository.findArtistsByUser_DepartmentCode(codeDepartement);
 	}
 
 

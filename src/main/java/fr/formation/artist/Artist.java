@@ -48,7 +48,9 @@ public class Artist {
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	private User user;
-	
+
+	public Artist() {}
+
 	public Artist(String artist_name, String artist_shortDesc, String artist_longDesc, 
 			String artist_phone, String artist_email, String artist_website, User user) {
 		this.artist_name = artist_name;
@@ -59,6 +61,8 @@ public class Artist {
 		this.artist_website = artist_website;
 		this.user = user;
 	}
+
+
 	
 //	@OneToMany(cascade = CascadeType.ALL)
 //	private Set<Rating> ratings;
