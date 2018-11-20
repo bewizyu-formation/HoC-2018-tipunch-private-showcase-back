@@ -6,6 +6,370 @@
 	},
 	"item": [
 		{
+			"name": "User",
+			"item": [
+				{
+					"name": "AddUser (SignUp_no_Artist)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/users/add?username=bob&password=azerty&email=bob@mail.fr&cityName=lyon&cityCode=69001&deptCode=69",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"users",
+								"add"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "bob"
+								},
+								{
+									"key": "password",
+									"value": "azerty"
+								},
+								{
+									"key": "email",
+									"value": "bob@mail.fr"
+								},
+								{
+									"key": "cityName",
+									"value": "lyon"
+								},
+								{
+									"key": "cityCode",
+									"value": "69001"
+								},
+								{
+									"key": "deptName",
+									"value": "rhone",
+									"disabled": true
+								},
+								{
+									"key": "deptCode",
+									"value": "69"
+								}
+							]
+						},
+						"description": "Pour inscrire un utilisateur depuis le formulaire d'inscription"
+					},
+					"response": []
+				},
+				{
+					"name": "AddUser(Signup_Artist)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/users/add?username=mickey&password=qwerty&email=mickey@mail.fr&cityName=paris&cityCode=75001&deptCode=75&artistName=mickemouse&shortDesc=mascotte",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"users",
+								"add"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "mickey"
+								},
+								{
+									"key": "password",
+									"value": "qwerty"
+								},
+								{
+									"key": "email",
+									"value": "mickey@mail.fr"
+								},
+								{
+									"key": "cityName",
+									"value": "paris"
+								},
+								{
+									"key": "cityCode",
+									"value": "75001"
+								},
+								{
+									"key": "deptName",
+									"value": "paris",
+									"disabled": true
+								},
+								{
+									"key": "deptCode",
+									"value": "75"
+								},
+								{
+									"key": "artistName",
+									"value": "mickemouse"
+								},
+								{
+									"key": "shortDesc",
+									"value": "mascotte"
+								}
+							]
+						},
+						"description": "Pour inscrire un utilisateur \"Artiste\" depuis le formulaire d'inscription"
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserInfo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hello Tests",
+			"item": [
+				{
+					"name": "Hello User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a5b2f2e-ce33-4541-828c-343517425479",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status is 200\"] = responseCode.code == \"200\""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/hello/user",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"hello",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hello Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6f8d7bc-9e3b-4dde-bbb5-f4ae6469ac13",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status is 403\"] = responseCode.code == \"403\""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/hello/admin",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"hello",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Geo API",
+			"item": [
+				{
+					"name": "getCommunes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/public/communes/nom?value=lyo",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"public",
+								"communes",
+								"nom"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "lyo"
+								}
+							]
+						},
+						"description": "Récupération d'une liste de communes depuis son nom"
+					},
+					"response": []
+				},
+				{
+					"name": "getCommunesByPostalCode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/public/communes/codepostal?value=69001",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"public",
+								"communes",
+								"codepostal"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "69001"
+								}
+							]
+						},
+						"description": "Récupère une liste de communes par code postal"
+					},
+					"response": []
+				},
+				{
+					"name": "getDepartement",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/departements/nom?value=Ain",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"departements",
+								"nom"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "Ain"
+								}
+							]
+						},
+						"description": "Récupération d'une liste de départements depuis divers paramètres"
+					},
+					"response": []
+				},
+				{
+					"name": "getDepartementByCode",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/departements/code?value=01",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"departements",
+								"code"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "01"
+								}
+							]
+						},
+						"description": "Récupération d'une liste de départements selon le code du département"
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Login User",
 			"event": [
 				{
@@ -49,275 +413,9 @@
 			"response": []
 		},
 		{
-			"name": "Hello User",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "4a5b2f2e-ce33-4541-828c-343517425479",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status is 200\"] = responseCode.code == \"200\""
-						]
-					}
-				}
-			],
+			"name": "Get Artist List by Departement",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{tokenUser}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{uri}}/hello/user",
-					"host": [
-						"{{uri}}"
-					],
-					"path": [
-						"hello",
-						"user"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Hello Admin",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "f6f8d7bc-9e3b-4dde-bbb5-f4ae6469ac13",
-						"type": "text/javascript",
-						"exec": [
-							"tests[\"Status is 403\"] = responseCode.code == \"403\""
-						]
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{tokenUser}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{uri}}/hello/admin",
-					"host": [
-						"{{uri}}"
-					],
-					"path": [
-						"hello",
-						"admin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getCommunes",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{uri}}/public/communes/nom?value=lyo",
-					"host": [
-						"{{uri}}"
-					],
-					"path": [
-						"public",
-						"communes",
-						"nom"
-					],
-					"query": [
-						{
-							"key": "value",
-							"value": "lyo"
-						}
-					]
-				},
-				"description": "Récupération d'une liste de communes depuis son nom"
-			},
-			"response": []
-		},
-		{
-			"name": "getCommunesByPostalCode",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{uri}}/public/communes/codepostal?value=69001",
-					"host": [
-						"{{uri}}"
-					],
-					"path": [
-						"public",
-						"communes",
-						"codepostal"
-					],
-					"query": [
-						{
-							"key": "value",
-							"value": "69001"
-						}
-					]
-				},
-				"description": "Récupère une liste de communes par code postal"
-			},
-			"response": []
-		},
-		{
-			"name": "getDepartement",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{tokenUser}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{uri}}/departements/nom?value=Ain",
-					"host": [
-						"{{uri}}"
-					],
-					"path": [
-						"departements",
-						"nom"
-					],
-					"query": [
-						{
-							"key": "value",
-							"value": "Ain"
-						}
-					]
-				},
-				"description": "Récupération d'une liste de départements depuis divers paramètres"
-			},
-			"response": []
-		},
-		{
-			"name": "getDepartementByCode",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{tokenUser}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{uri}}/departements/code?value=01",
-					"host": [
-						"{{uri}}"
-					],
-					"path": [
-						"departements",
-						"code"
-					],
-					"query": [
-						{
-							"key": "value",
-							"value": "01"
-						}
-					]
-				},
-				"description": "Récupération d'une liste de départements selon le code du département"
-			},
-			"response": []
-		},
-		{
-			"name": "AddUser (SignUp_no_Artist)",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Authorization",
-						"type": "text",
-						"value": "{{tokenUser}}"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{uri}}/users/add?username=bob&password=azerty&email=bob@mail.fr&cityName=lyon&cityCode=69001&deptCode=69",
-					"host": [
-						"{{uri}}"
-					],
-					"path": [
-						"users",
-						"add"
-					],
-					"query": [
-						{
-							"key": "username",
-							"value": "bob"
-						},
-						{
-							"key": "password",
-							"value": "azerty"
-						},
-						{
-							"key": "email",
-							"value": "bob@mail.fr"
-						},
-						{
-							"key": "cityName",
-							"value": "lyon"
-						},
-						{
-							"key": "cityCode",
-							"value": "69001"
-						},
-						{
-							"key": "deptName",
-							"value": "rhone",
-							"disabled": true
-						},
-						{
-							"key": "deptCode",
-							"value": "69"
-						}
-					]
-				},
-				"description": "Pour inscrire un utilisateur depuis le formulaire d'inscription"
-			},
-			"response": []
-		},
-		{
-			"name": "AddUser(Signup_Artist)",
-			"request": {
-				"method": "PUT",
 				"header": [
 					{
 						"key": "Authorization",
@@ -330,55 +428,15 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{uri}}/users/add?username=mickey&password=qwerty&email=mickey@mail.fr&cityName=paris&cityCode=75001&deptCode=75&artistName=mickemouse&shortDesc=mascotte",
+					"raw": "{{uri}}/artist/list",
 					"host": [
 						"{{uri}}"
 					],
 					"path": [
-						"users",
-						"add"
-					],
-					"query": [
-						{
-							"key": "username",
-							"value": "mickey"
-						},
-						{
-							"key": "password",
-							"value": "qwerty"
-						},
-						{
-							"key": "email",
-							"value": "mickey@mail.fr"
-						},
-						{
-							"key": "cityName",
-							"value": "paris"
-						},
-						{
-							"key": "cityCode",
-							"value": "75001"
-						},
-						{
-							"key": "deptName",
-							"value": "paris",
-							"disabled": true
-						},
-						{
-							"key": "deptCode",
-							"value": "75"
-						},
-						{
-							"key": "artistName",
-							"value": "mickemouse"
-						},
-						{
-							"key": "shortDesc",
-							"value": "mascotte"
-						}
+						"artist",
+						"list"
 					]
-				},
-				"description": "Pour inscrire un utilisateur \"Artiste\" depuis le formulaire d'inscription"
+				}
 			},
 			"response": []
 		}
