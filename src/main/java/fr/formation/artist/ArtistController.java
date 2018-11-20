@@ -38,4 +38,14 @@ public class ArtistController extends AbstractController {
 		User user = super.getAuthenticatedUser();
 		return artistService.findArtistsByDepartementCode(user.getDepartmentCode());
 	}
+
+	@PostMapping("/update")
+	public Artist updateArtist(@RequestParam String artist_name, @RequestParam String artist_shortDesc, @RequestParam String artist_longDesc,
+							   @RequestParam String artist_phone, @RequestParam String artist_email, @RequestParam String artist_website) {
+
+		User user = super.getAuthenticatedUser();
+		Artist artist = artistService.updateArtist(artist_name, artist_shortDesc, artist_longDesc, artist_phone, artist_email, artist_website, user);
+
+		return artist;
+	}
 }

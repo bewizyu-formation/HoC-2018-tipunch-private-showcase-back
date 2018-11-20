@@ -15,6 +15,5 @@ public interface ArtistRepository extends  JpaRepository<Artist, Long>  {
 
     @Query(value = "Select * from artist INNER JOIN users ON artist.user_id = users.id WHERE users.department_code = :deptcode",
             nativeQuery = true)
-
     List<Artist> findArtistsByUser_DepartmentCode(@Param("deptcode") String department_code);
 }

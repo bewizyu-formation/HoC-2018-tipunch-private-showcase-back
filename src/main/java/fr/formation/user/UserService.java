@@ -1,6 +1,5 @@
 package fr.formation.user;
 
-import fr.formation.artist.ArtistService;
 import fr.formation.geo.model.Departement;
 import fr.formation.geo.services.DepartementService;
 import org.slf4j.Logger;
@@ -30,7 +29,6 @@ public class UserService implements UserDetailsService {
 	private UserRepository userRepository;
 	private UserRoleRepository userRoleRepository;
 	private DepartementService departementService;
-	private ArtistService artistService;
 
 	/**
 	 * Instantiates a new User service.
@@ -94,7 +92,6 @@ public class UserService implements UserDetailsService {
 			String cityCode, String deptCode) {
 
 		List<Departement> departmentName = departementService.getDepartementByCode(deptCode);
-		logger.info("Départements by code ", departmentName, deptCode);
 
 		String deptName = departmentName.get(0).getNom();
 
