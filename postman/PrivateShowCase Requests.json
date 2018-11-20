@@ -370,6 +370,93 @@
 			]
 		},
 		{
+			"name": "Artist",
+			"item": [
+				{
+					"name": "Get Artist List by Departement",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/artist/list",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"artist",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateArtist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/artist/update?artist_name=name&artist_shortDesc=shortdesc&artist_longDesc=longdesc&artist_phone=phone&artist_email=email&artist_website=website",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"artist",
+								"update"
+							],
+							"query": [
+								{
+									"key": "artist_name",
+									"value": "name"
+								},
+								{
+									"key": "artist_shortDesc",
+									"value": "shortdesc"
+								},
+								{
+									"key": "artist_longDesc",
+									"value": "longdesc"
+								},
+								{
+									"key": "artist_phone",
+									"value": "phone"
+								},
+								{
+									"key": "artist_email",
+									"value": "email"
+								},
+								{
+									"key": "artist_website",
+									"value": "website"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Login User",
 			"event": [
 				{
@@ -407,34 +494,6 @@
 					"port": "8080",
 					"path": [
 						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Artist List by Departement",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "{{tokenUser}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{uri}}/artist/list",
-					"host": [
-						"{{uri}}"
-					],
-					"path": [
-						"artist",
-						"list"
 					]
 				}
 			},

@@ -116,7 +116,6 @@ public class UserService implements UserDetailsService {
 			String cityCode, String deptCode) {
 
 		List<Departement> departmentName = departementService.getDepartementByCode(deptCode);
-		logger.info("Départements by code ", departmentName, deptCode);
 
 		String deptName = departmentName.get(0).getNom();
 
