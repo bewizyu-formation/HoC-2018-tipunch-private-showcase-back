@@ -8,6 +8,11 @@ import java.util.Set;
  */
 public class Commune implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3266865333854101712L;
+
 	private String nom;
 
 	private String code;

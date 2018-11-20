@@ -37,4 +37,14 @@ public class UserController {
 
 		return user;
 	}
+	
+	
+	@GetMapping("Users/info")
+	public UserInfoDTO userInfo(@RequestParam String username, @RequestParam(required = false) String artistName, @RequestParam String deptCode) {
+		
+		 UserInfoDTO user  = userService.getUserInfo2(username, artistName, deptCode);
+		
+		
+		return user;
+	}
 }

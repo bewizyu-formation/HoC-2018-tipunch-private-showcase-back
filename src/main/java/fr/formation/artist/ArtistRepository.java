@@ -17,4 +17,13 @@ public interface ArtistRepository extends  JpaRepository<Artist, Long>  {
             nativeQuery = true)
 
     List<Artist> findArtistsByUser_DepartmentCode(@Param("deptcode") String department_code);
+	
+	/**
+	 * Find by Artist_name user.
+	 *
+	 * @param Artist_name theArtist_name
+	 *
+	 * @return Artist_name
+	 */
+	public Artist findByArtstName( String artist_name);
 }
