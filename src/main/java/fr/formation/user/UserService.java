@@ -1,5 +1,6 @@
 package fr.formation.user;
 
+import fr.formation.artist.ArtistService;
 import fr.formation.geo.model.Departement;
 import fr.formation.geo.services.DepartementService;
 import org.slf4j.Logger;
@@ -29,6 +30,7 @@ public class UserService implements UserDetailsService {
 	private UserRepository userRepository;
 	private UserRoleRepository userRoleRepository;
 	private DepartementService departementService;
+	private ArtistService artistService;
 
 	/**
 	 * Instantiates a new User service.
@@ -61,13 +63,12 @@ public class UserService implements UserDetailsService {
 		List<String> roles = userRoleRepository.findRoleByUserName(username);
 		return new org.springframework.security.core.userdetails.User(username, user.getPassword(),
 				transformToAuthorities(roles));
-
 	}
 
 	/**
 	 * findUserByUsername.
 	 * @param username
-	 * @return
+	 * @return user
 	 * @throws UsernameNotFoundException
 	 */
 	public User findUserByUsername (String username) throws UsernameNotFoundException {
@@ -77,7 +78,6 @@ public class UserService implements UserDetailsService {
 		}  else {
 			throw new UsernameNotFoundException("No user exists with username: " + username);
 		}
-
 	}
 
 	/**
@@ -113,6 +113,5 @@ public class UserService implements UserDetailsService {
 			userRoleRepository.save(userRole);
 		}
 		return user;
-
 	}
 }
