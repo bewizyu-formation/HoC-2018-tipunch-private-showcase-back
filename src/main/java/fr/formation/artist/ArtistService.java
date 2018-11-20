@@ -52,7 +52,7 @@ public class ArtistService {
 	public Artist updateArtist(String artist_name, String artist_shortDesc, String artist_longDesc,
 							   String artist_phone, String artist_email, String artist_website, User user) {
 
-		Artist artist = null;
+		Artist artist = artistRepository.findArtistByUser_Id(user.getId());
 
 		if(artist_name != null) {artist.setArtistName(artist_name);}
 		if(artist_shortDesc != null) {artist.setShortDescription(artist_shortDesc);}
@@ -61,7 +61,7 @@ public class ArtistService {
 		if(artist_email != null) {artist.setEmail(artist_email);}
 		if(artist_website != null) {artist.setWebsite(artist_website);}
 
-		artist = artistRepository.findArtistsByUser_Id(user.getId()).saveAndFlush(artist);
+		artist = artistRepository.saveAndFlush(artist);
 
 		return artist;
 	}
