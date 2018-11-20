@@ -53,8 +53,8 @@ public class Artist {
 
 	public Artist() {}
 
-	public Artist(String artist_name, String artist_shortDesc, String artist_longDesc, 
-			String artist_phone, String artist_email, String artist_website, User user) {
+	public Artist(String artist_name, String artist_shortDesc, String artist_longDesc,
+				  String artist_phone, String artist_email, String artist_website, User user) {
 		this.artist_name = artist_name;
 		this.artist_shortDesc = artist_shortDesc;
 		this.artist_longDesc = artist_longDesc;
@@ -130,7 +130,7 @@ public class Artist {
 	/**
 	 * Sets short_Description.
 	 *
-	 * @param short_Description the short_Description
+	 * @param shortDesc the short_Description
 	 */
 	public void setShortDescription( String shortDesc) {
 		this.artist_shortDesc = shortDesc ;
@@ -149,7 +149,7 @@ public class Artist {
 	/**
 	 * Sets long_Description.
 	 *
-	 * @param long_Description the long_Description
+	 * @param longDesc the long_Description
 	 */
 	public void setlongDescription( String longDesc) {
 		this.artist_longDesc = longDesc ;
@@ -206,6 +206,22 @@ public class Artist {
 	 */
 	public void setWebsite(String website ) {
 		this.artist_website = website;
+	}
+
+	/**
+	 * Sets user.
+	 * @return  user
+	 */
+	public User getUser() {
+		return user;
+	}
+
+	/**
+	 * Sets user.
+	 * @param user the user
+	 */
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 
