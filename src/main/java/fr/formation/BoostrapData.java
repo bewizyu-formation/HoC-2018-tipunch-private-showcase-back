@@ -17,7 +17,6 @@ public class BoostrapData {
 	private ArtistService artistService;
 	private UserService userService;
 	private PasswordEncoder passwordEncoder;
-	private UploadService uploadService;
 
 	/**
 	 * Instantiates a new Boostrap data.
