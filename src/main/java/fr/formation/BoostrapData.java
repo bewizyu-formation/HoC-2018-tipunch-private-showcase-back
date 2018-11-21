@@ -1,7 +1,6 @@
 package fr.formation;
 
 import fr.formation.artist.ArtistService;
-import fr.formation.upload.UploadService;
 import fr.formation.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -27,11 +26,10 @@ public class BoostrapData {
 	 * @param passwordEncoder the password encoder
 	 */
 	@Autowired
-	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder, UploadService uploadService) {
+	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder) {
 		this.userService = userService;
 		this.artistService = artistService;
 		this.passwordEncoder = passwordEncoder;
-		this.uploadService = uploadService;
 	}
 
 	/**
@@ -39,9 +37,6 @@ public class BoostrapData {
 	 */
 	@EventListener(ContextRefreshedEvent.class)
 	public void onStart() {
-
-		uploadService.deleteAll();
-		uploadService.init();
 
 		userService.addNewUser(
 				"admin",
