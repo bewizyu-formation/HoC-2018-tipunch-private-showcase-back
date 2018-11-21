@@ -64,7 +64,7 @@ public class BoostrapData {
 				"jeanmagician.fr",
 				userService.addNewUser(
 						"jean",
-						passwordEncoder.encode("jean"),
+						passwordEncoder.encode("1Azerty1"),
 						"jean@user.fr",
 						"Paris",
 						"75001",
@@ -81,7 +81,7 @@ public class BoostrapData {
 				"dave.ass",
 				userService.addNewUser(
 						"Dave",
-						passwordEncoder.encode("Dave"),
+						passwordEncoder.encode("2Qwerty2"),
 						"Dave@user.fr",
 						"Saint-Quentin",
 						"02100",
@@ -98,7 +98,7 @@ public class BoostrapData {
 				"pantrickandtheincredibleband.fr",
 				userService.addNewUser(
 						"patrick",
-						passwordEncoder.encode("patrick"),
+						passwordEncoder.encode("1Azerty1"),
 						"patrick@user.fr",
 						"Laon",
 						"02000",
@@ -108,7 +108,7 @@ public class BoostrapData {
 
 		userService.addNewUser(
 				"Yann",
-				passwordEncoder.encode("Yann"),
+				passwordEncoder.encode("2Qwerty2"),
 				"Yann@user.fr",
 				"Paris",
 				"75009",
@@ -124,7 +124,7 @@ public class BoostrapData {
 				"event.fr",
 				userService.addNewUser(
 						"Jeanine",
-						passwordEncoder.encode("Jeanine"),
+						passwordEncoder.encode("3Wxcvbn3"),
 						"Jeanine@user.fr",
 						"Fère-en-Tardenois",
 						"02130",
