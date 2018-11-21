@@ -3,6 +3,7 @@
  */
 package fr.formation.artist;
 
+import fr.formation.upload.Image;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -40,10 +41,10 @@ public class ArtistService {
 	 * @return Artist
 	 */
 	public Artist addNewArtist(String artist_name, String artist_shortDesc, String artist_longDesc,
-			String artist_phone, String artist_email, String artist_website, User user) {
+			String artist_phone, String artist_email, String artist_website, User user, Image image) {
 
 		Artist artist = new Artist(artist_name, artist_shortDesc, artist_longDesc, 
-				 artist_phone, artist_email, artist_website, user);
+				 artist_phone, artist_email, artist_website, user, image);
 		artist = artistRepository.save(artist);
 
 		return artist;

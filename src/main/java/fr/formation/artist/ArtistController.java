@@ -30,7 +30,7 @@ public class ArtistController extends AbstractController {
 			@RequestParam String artist_phone, @RequestParam String artist_email, @RequestParam String artist_website) {
 
 		User user = super.getAuthenticatedUser();
-		artistService.addNewArtist( artist_name,  artist_shortDesc,  artist_longDesc, artist_phone,  artist_email,  artist_website, user);
+		artistService.addNewArtist( artist_name,  artist_shortDesc,  artist_longDesc, artist_phone,  artist_email,  artist_website, user, null);
 	}
 
 	@GetMapping("/list")
