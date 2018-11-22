@@ -224,6 +224,12 @@ public class Artist {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
 }

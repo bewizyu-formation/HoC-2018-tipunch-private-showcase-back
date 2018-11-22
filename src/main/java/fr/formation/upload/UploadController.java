@@ -24,20 +24,6 @@ public class UploadController {
     @Autowired
     UploadService uploadService;
 
-/*   public ResponseEntity<List<String>> getListFiles(Model model) {
-        List<String> fileNames = files
-                .stream().map(fileName -> MvcUriComponentsBuilder
-                        .fromMethodName(ImageController.class, "getFile", fileName).build().toString())
-                .collect(Collectors.toList());
 
-        return ResponseEntity.ok().body(fileNames);
-    }*/
 
-    @ResponseBody
-    public ResponseEntity<Resource> getFile(String filename, Path img_path) {
-        Resource file = uploadService.loadFile(filename, img_path);
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
-                .body(file);
-    }
 }

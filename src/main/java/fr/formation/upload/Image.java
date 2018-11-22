@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name="image")
 public class Image {
 
-    public void Image() {}
+    public Image() {}
 
     public Image(String img_name, String img_path) {
         this.img_name = img_name;

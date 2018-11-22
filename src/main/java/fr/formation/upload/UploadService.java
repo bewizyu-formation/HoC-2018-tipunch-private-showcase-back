@@ -27,7 +27,7 @@ public class UploadService {
     public void store(MultipartFile file, String dir_name) {
         Path artist_dir = Paths.get(ROOT_DIR, dir_name);
         //FileUtils.getTempDirectory()
-        System.out.println("ici");
+
         try {
             Files.copy(file.getInputStream(), artist_dir.resolve(file.getOriginalFilename()));
         } catch (Exception e) {

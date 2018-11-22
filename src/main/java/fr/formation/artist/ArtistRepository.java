@@ -17,7 +17,7 @@ public interface ArtistRepository extends  JpaRepository<Artist, Long>  {
     List<Artist> findArtistsByUser_DepartmentCode(@Param("deptcode") String department_code);
 	
 	/**
-	 * Find by Artist_name user.
+	 * Find Artist by user_id.
 	 *
 	 * @param id the user_id
 	 * @return Artist artist

@@ -4,12 +4,16 @@
 package fr.formation.artist;
 
 import fr.formation.upload.Image;
+import fr.formation.upload.ImageService;
+import fr.formation.user.UserInfoDTO;
+import fr.formation.user.UserService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 import fr.formation.user.User;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author adminHOC
@@ -19,6 +23,10 @@ import fr.formation.user.User;
 public class ArtistService {
 
 	private ArtistRepository artistRepository;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private ImageService imageService;
 	
 	/**
 	 * Instantiates a new Artist service.
@@ -51,7 +59,7 @@ public class ArtistService {
 	}
 
 	public Artist updateArtist(String artist_name, String artist_shortDesc, String artist_longDesc,
-							   String artist_phone, String artist_email, String artist_website, User user) {
+							   String artist_phone, String artist_email, String artist_website, User user, MultipartFile file) {
 
 		Artist artist = artistRepository.findArtistByUser_Id(user.getId());
 
@@ -61,6 +69,14 @@ public class ArtistService {
 		if(artist_phone != null) {artist.setPhone(artist_phone);}
 		if(artist_email != null) {artist.setEmail(artist_email);}
 		if(artist_website != null) {artist.setWebsite(artist_website);}
+		if(file != null) {
+
+			UserInfoDTO userInfo = userService.getUserInfo(user);
+			Image image = imageService.addFile(file, userInfo);
+			if(image != null) {
+				artist.setImage(image);
+			}
+		}
 
 		artist = artistRepository.saveAndFlush(artist);
 
@@ -70,6 +86,8 @@ public class ArtistService {
 	public List<Artist> findArtistsByDepartementCode (final String codeDepartement) {
 		return artistRepository.findArtistsByUser_DepartmentCode(codeDepartement);
 	}
+
+
 
 
 }

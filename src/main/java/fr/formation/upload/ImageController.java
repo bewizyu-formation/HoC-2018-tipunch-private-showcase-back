@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/file")
+@RequestMapping("/image")
 @Secured(SecurityConstants.ROLE_USER)
 public class ImageController extends AbstractController {
 
@@ -33,11 +33,11 @@ public class ImageController extends AbstractController {
     @Autowired
     ImageService imageService;
 
-    @PostMapping(value = "/add")
     public void addFile(@RequestParam("file") MultipartFile file) {
         Assert.notNull(file, "Le fichier ne peut être null");
 
-        log.info(file.getOriginalFilename());
+        log.info("File Name : " + file.getOriginalFilename());
+        log.info("File Type : " + file.getContentType());
 
         User user = super.getAuthenticatedUser();
         UserInfoDTO userInfo = userService.getUserInfo(user);
