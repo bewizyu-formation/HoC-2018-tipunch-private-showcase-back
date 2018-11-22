@@ -118,7 +118,7 @@ public class UserService implements UserDetailsService {
 
         String passwordEncoded = passwordEncoder.encode(password);
 
-        User user = new User(username, password, email, cityName, cityCode, deptName, deptCode);
+        User user = new User(username, passwordEncoded, email, cityName, cityCode, deptName, deptCode);
         user = userRepository.save(user);
 
         if (username == "admin") {
