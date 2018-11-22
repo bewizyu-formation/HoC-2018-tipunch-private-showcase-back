@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -32,6 +33,7 @@ public class UserService implements UserDetailsService {
     private UserRoleRepository userRoleRepository;
     private DepartementService departementService;
     private ArtistRepository artistRepository;
+    private PasswordEncoder passwordEncoder;
 
     /**
      * Instantiates a new User service.
@@ -41,11 +43,12 @@ public class UserService implements UserDetailsService {
      */
     @Autowired
     public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository,
-            ArtistRepository artistRepository, DepartementService departementService) {
+            ArtistRepository artistRepository, DepartementService departementService, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.departementService = departementService;
         this.artistRepository = artistRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /**
@@ -84,9 +87,8 @@ public class UserService implements UserDetailsService {
     }
 
     /**
-     * 
+     * Get User Info.
      * @param user
-     * @param artist
      * @return
      */
     public UserInfoDTO getUserInfo(User user) {
@@ -112,10 +114,11 @@ public class UserService implements UserDetailsService {
             String deptCode) {
 
         List<Departement> departmentName = departementService.getDepartementByCode(deptCode);
-
         String deptName = departmentName.get(0).getNom();
 
-        User user = new User(username, password, email, cityName, cityCode, deptName, deptCode);
+        String passwordEncoded = passwordEncoder.encode(password);
+
+        User user = new User(username, passwordEncoded, email, cityName, cityCode, deptName, deptCode);
         user = userRepository.save(user);
 
         if (username == "admin") {
