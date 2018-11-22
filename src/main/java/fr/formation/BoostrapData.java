@@ -1,8 +1,8 @@
 package fr.formation;
 
 import fr.formation.artist.ArtistService;
-import fr.formation.event.EventService;
 import fr.formation.user.User;
+import fr.formation.upload.UploadService;
 import fr.formation.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -19,7 +19,7 @@ public class BoostrapData {
 	private ArtistService artistService;
 	private UserService userService;
 	private PasswordEncoder passwordEncoder;
-	private EventService eventService;
+	private UploadService uploadService;
 
 	/**
 	 * Instantiates a new Boostrap data.
@@ -29,11 +29,11 @@ public class BoostrapData {
 	 *
 	 */
 	@Autowired
-	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder, EventService eventService) {
+	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder, UploadService uploadService) {
 		this.userService = userService;
 		this.artistService = artistService;
 		this.passwordEncoder = passwordEncoder;
-		this.eventService = eventService;
+		this.uploadService = uploadService;
 	}
 
 	/**
@@ -41,6 +41,9 @@ public class BoostrapData {
 	 */
 	@EventListener(ContextRefreshedEvent.class)
 	public void onStart() {
+
+		uploadService.deleteAll();
+		uploadService.init();
 
 		userService.addNewUser(
 				"admin",
@@ -69,12 +72,13 @@ public class BoostrapData {
 				"jeanmagician.fr",
 				userService.addNewUser(
 						"jean",
-						passwordEncoder.encode("jean"),
+						passwordEncoder.encode("1Azerty1"),
 						"jean@user.fr",
 						"Paris",
 						"75001",
 						"75"
-				)
+				),
+				null
 		);
 
 		artistService.addNewArtist(
@@ -86,12 +90,13 @@ public class BoostrapData {
 				"dave.ass",
 				userService.addNewUser(
 						"Dave",
-						passwordEncoder.encode("Dave"),
+						passwordEncoder.encode("2Qwerty2"),
 						"Dave@user.fr",
 						"Saint-Quentin",
 						"02100",
 						"02"
-				)
+				),
+				null
 		);
 
 		artistService.addNewArtist(
@@ -103,17 +108,18 @@ public class BoostrapData {
 				"pantrickandtheincredibleband.fr",
 				userService.addNewUser(
 						"patrick",
-						passwordEncoder.encode("patrick"),
+						passwordEncoder.encode("1Azerty1"),
 						"patrick@user.fr",
 						"Laon",
 						"02000",
 						"02"
-				)
+				),
+				null
 		);
 
 		userService.addNewUser(
 				"Yann",
-				passwordEncoder.encode("Yann"),
+				passwordEncoder.encode("2Qwerty2"),
 				"Yann@user.fr",
 				"Paris",
 				"75009",
@@ -129,12 +135,13 @@ public class BoostrapData {
 				"event.fr",
 				userService.addNewUser(
 						"Jeanine",
-						passwordEncoder.encode("Jeanine"),
+						passwordEncoder.encode("3Wxcvbn3"),
 						"Jeanine@user.fr",
 						"Fère-en-Tardenois",
 						"02130",
 						"02"
-				)
+				),
+				null
 		);
 	}
 }

@@ -16,6 +16,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import fr.formation.event.Event;
+import fr.formation.upload.Image;
 import fr.formation.user.User;
 
 /**
@@ -27,7 +28,6 @@ import fr.formation.user.User;
 public class Artist {
 
     @Id
-
     @GeneratedValue
     private Long id;
 
@@ -54,12 +54,15 @@ public class Artist {
 
     @OneToOne(cascade = { MERGE, REMOVE, REFRESH, DETACH })
     private User user;
+  
+  	@OneToOne(cascade={MERGE, REMOVE, REFRESH, DETACH})
+	  private Image image;
 
     public Artist() {
     }
 
     public Artist(String artist_name, String artist_shortDesc, String artist_longDesc, String artist_phone,
-            String artist_email, String artist_website, User user) {
+            String artist_email, String artist_website, User user, Image image) {
         this.artist_name = artist_name;
         this.artist_shortDesc = artist_shortDesc;
         this.artist_longDesc = artist_longDesc;
@@ -67,6 +70,7 @@ public class Artist {
         this.artist_email = artist_email;
         this.artist_website = artist_website;
         this.user = user;
+        this.image = image;
     }
 
     //	@OneToMany(cascade = CascadeType.ALL)
@@ -220,4 +224,12 @@ public class Artist {
         this.user = user;
     }
 
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
 }
