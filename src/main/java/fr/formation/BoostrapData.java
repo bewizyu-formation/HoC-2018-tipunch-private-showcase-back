@@ -1,6 +1,7 @@
 package fr.formation;
 
 import fr.formation.artist.ArtistService;
+import fr.formation.upload.ImageService;
 import fr.formation.upload.UploadService;
 import fr.formation.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class BoostrapData {
 	private UserService userService;
 	private PasswordEncoder passwordEncoder;
 	private UploadService uploadService;
+	private ImageService imageService;
 
 	/**
 	 * Instantiates a new Boostrap data.
@@ -28,11 +30,12 @@ public class BoostrapData {
 	 *
 	 */
 	@Autowired
-	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder, UploadService uploadService) {
+	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder, UploadService uploadService, ImageService imageService) {
 		this.userService = userService;
 		this.artistService = artistService;
 		this.passwordEncoder = passwordEncoder;
 		this.uploadService = uploadService;
+		this.imageService = imageService;
 	}
 
 	/**
@@ -43,6 +46,7 @@ public class BoostrapData {
 
 		uploadService.deleteAll();
 		uploadService.init();
+		imageService.addDefaultImage();
 
 		userService.addNewUser(
 				"admin",

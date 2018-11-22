@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,8 +25,16 @@ public class ImageService {
 
     @Autowired
     UploadService uploadService;
+    @Autowired
+    ImageRepository imageRepository;
 
     List<String> files = new ArrayList<String>();
+
+    public void addDefaultImage() {
+        String img_path = "img_default".concat(System.getProperty("file.separator")).concat("default.jpg").replace("\"", "/");
+        Image image = new Image("default.jpg", img_path);
+        imageRepository.save(image);
+    }
 
     public Image addFile(MultipartFile file, UserInfoDTO userInfo) {
 
@@ -63,5 +72,11 @@ public class ImageService {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                 .body(file);
+    }
+
+    public Image getDefaultImg() {
+
+        Image image = imageRepository.findDefaultImage();
+        return image;
     }
 }
