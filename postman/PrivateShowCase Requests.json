@@ -24,7 +24,7 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "{{uri}}/users/add?username=bob&password=azerty&email=bob@mail.fr&cityName=lyon&cityCode=69001&deptCode=69",
+							"raw": "{{uri}}/users/add?username=test&password=azerty&email=bob@mail.fr&cityName=lyon&cityCode=69001&deptCode=69",
 							"host": [
 								"{{uri}}"
 							],
@@ -35,32 +35,39 @@
 							"query": [
 								{
 									"key": "username",
-									"value": "bob"
+									"value": "test",
+									"description": "Username du formulaire"
 								},
 								{
 									"key": "password",
-									"value": "azerty"
+									"value": "azerty",
+									"description": "Password du formulaire"
 								},
 								{
 									"key": "email",
-									"value": "bob@mail.fr"
+									"value": "bob@mail.fr",
+									"description": "Email du formulaire"
 								},
 								{
 									"key": "cityName",
-									"value": "lyon"
+									"value": "lyon",
+									"description": "Nom de la villle du formulaire"
 								},
 								{
 									"key": "cityCode",
-									"value": "69001"
+									"value": "69001",
+									"description": "Code postal de la ville du formulaire"
 								},
 								{
 									"key": "deptName",
 									"value": "rhone",
+									"description": "Username du formulaire",
 									"disabled": true
 								},
 								{
 									"key": "deptCode",
-									"value": "69"
+									"value": "69",
+									"description": "Code du département"
 								}
 							]
 						},
@@ -95,23 +102,28 @@
 							"query": [
 								{
 									"key": "username",
-									"value": "mickey"
+									"value": "mickey",
+									"description": "Username du formulaire"
 								},
 								{
 									"key": "password",
-									"value": "qwerty"
+									"value": "qwerty",
+									"description": "Password du formulaire"
 								},
 								{
 									"key": "email",
-									"value": "mickey@mail.fr"
+									"value": "mickey@mail.fr",
+									"description": "Email du formulaire"
 								},
 								{
 									"key": "cityName",
-									"value": "paris"
+									"value": "paris",
+									"description": "Nom de la villle du formulaire"
 								},
 								{
 									"key": "cityCode",
-									"value": "75001"
+									"value": "75001",
+									"description": "Code postal de la ville du formulaire"
 								},
 								{
 									"key": "deptName",
@@ -120,15 +132,18 @@
 								},
 								{
 									"key": "deptCode",
-									"value": "75"
+									"value": "75",
+									"description": "Code du département"
 								},
 								{
 									"key": "artistName",
-									"value": "mickemouse"
+									"value": "mickemouse",
+									"description": "Nom d'artiste du User du formulaire"
 								},
 								{
 									"key": "shortDesc",
-									"value": "mascotte"
+									"value": "mascotte",
+									"description": "Courte description du User du formulaire"
 								}
 							]
 						},
@@ -274,7 +289,8 @@
 							"query": [
 								{
 									"key": "value",
-									"value": "lyo"
+									"value": "lyo",
+									"description": "Nom de la ville"
 								}
 							]
 						},
@@ -304,7 +320,8 @@
 							"query": [
 								{
 									"key": "value",
-									"value": "69001"
+									"value": "69001",
+									"description": "Code postal de la ville"
 								}
 							]
 						},
@@ -338,7 +355,8 @@
 							"query": [
 								{
 									"key": "value",
-									"value": "Ain"
+									"value": "Ain",
+									"description": "Nom du département"
 								}
 							]
 						},
@@ -372,7 +390,8 @@
 							"query": [
 								{
 									"key": "value",
-									"value": "01"
+									"value": "01",
+									"description": "Numéro du département"
 								}
 							]
 						},
@@ -420,18 +439,18 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "{{tokenUser}}",
-								"type": "text"
+								"type": "text",
+								"value": "{{tokenUser}}"
 							},
 							{
 								"key": "Accept",
-								"value": "*/*",
-								"type": "text"
+								"type": "text",
+								"value": "*/*"
 							},
 							{
 								"key": "Content-Type",
-								"value": "multipart/form-data",
-								"type": "text"
+								"type": "text",
+								"value": "multipart/form-data"
 							}
 						],
 						"body": {
@@ -439,7 +458,7 @@
 							"formdata": [
 								{
 									"key": "file",
-									"description": "null si vide",
+									"description": "Image du profil (envoyer null si vide)",
 									"type": "file",
 									"src": ""
 								}
@@ -458,32 +477,32 @@
 								{
 									"key": "name",
 									"value": "name",
-									"description": "null si vide"
+									"description": "Nom de l'artiste (envoyer null si vide)"
 								},
 								{
 									"key": "shortdesc",
 									"value": "shortdesc",
-									"description": "null si vide"
+									"description": "Courte description de l'artiste (envoyer null si vide)"
 								},
 								{
 									"key": "longdesc",
 									"value": "longdesc",
-									"description": "null si vide"
+									"description": "Longue description de l'artiste (envoyer null si vide)"
 								},
 								{
 									"key": "phone",
 									"value": "phone",
-									"description": "null si vide"
+									"description": "Téléphone de l'artiste (envoyer null si vide)"
 								},
 								{
 									"key": "email",
 									"value": "email",
-									"description": "null si vide"
+									"description": "Email de l'artiste (envoyer null si vide)"
 								},
 								{
 									"key": "website",
 									"value": "website",
-									"description": "null si vide"
+									"description": "Site web de l'artiste (envoyer null si vide)"
 								}
 							]
 						}
@@ -568,16 +587,52 @@
 							"query": [
 								{
 									"key": "date",
-									"value": "07/07/2030"
+									"value": "07/07/2030",
+									"description": "Date de l'événement"
 								},
 								{
 									"key": "places",
-									"value": "900"
+									"value": "900",
+									"description": "Nombre de places"
 								},
 								{
 									"key": "id",
-									"value": "10"
+									"value": "10",
+									"description": "Id de l'artiste"
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "getimage",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/image/1",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"image",
+								"1"
 							]
 						}
 					},
