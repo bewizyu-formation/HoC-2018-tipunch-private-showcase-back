@@ -1,7 +1,6 @@
 package fr.formation;
 
 import fr.formation.artist.ArtistService;
-import fr.formation.user.User;
 import fr.formation.upload.UploadService;
 import fr.formation.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
