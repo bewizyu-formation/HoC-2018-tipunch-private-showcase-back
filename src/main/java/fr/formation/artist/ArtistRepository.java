@@ -12,9 +12,9 @@ import java.util.List;
  */
 public interface ArtistRepository extends  JpaRepository<Artist, Long>  {
 
-    @Query(value = "Select * from artist INNER JOIN users ON artist.user_id = users.id WHERE users.department_code = :deptcode",
+    @Query(value = "Select * from artist INNER JOIN users ON artist.user_id = users.id WHERE users.department_code = :deptcode AND artist.user_id <> :id",
             nativeQuery = true)
-    List<Artist> findArtistsByUser_DepartmentCode(@Param("deptcode") String department_code);
+    List<Artist> findArtistsByUser_DepartmentCode(@Param("deptcode") String department_code, @Param("id") Long user_authenticated_id);
 	
 	/**
 	 * Find Artist by user_id.

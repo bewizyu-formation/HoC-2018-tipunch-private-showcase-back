@@ -37,7 +37,7 @@ public class ArtistController extends AbstractController {
 	@GetMapping("/list")
 	public List<Artist> getArtistsFromDepartement() {
 		User user = super.getAuthenticatedUser();
-		return artistService.findArtistsByDepartementCode(user.getDepartmentCode());
+		return artistService.findArtistsByDepartementCode(user.getDepartmentCode(), user.getId());
 	}
 
 	@PostMapping("/update")
