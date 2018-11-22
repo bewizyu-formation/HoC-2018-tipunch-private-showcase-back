@@ -140,13 +140,26 @@
 					"name": "GetUserInfo",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": ""
+							"raw": "{{uri}}/users/info",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"users",
+								"info"
+							]
 						}
 					},
 					"response": []
@@ -506,7 +519,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"username\":\"jean\", \"password\":\"jean\"}"
+					"raw": "{ \"username\":\"patrick\", \"password\":\"1Azerty1\"}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/login",
