@@ -1,0 +1,601 @@
+{
+	"info": {
+		"_postman_id": "2e8bb23c-4a21-4b4f-9887-75277889ca27",
+		"name": "PrivateShowCase User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "AddUser (SignUp_no_Artist)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/users/add?username=bob&password=azerty&email=bob@mail.fr&cityName=lyon&cityCode=69001&deptCode=69",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"users",
+								"add"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "bob"
+								},
+								{
+									"key": "password",
+									"value": "azerty"
+								},
+								{
+									"key": "email",
+									"value": "bob@mail.fr"
+								},
+								{
+									"key": "cityName",
+									"value": "lyon"
+								},
+								{
+									"key": "cityCode",
+									"value": "69001"
+								},
+								{
+									"key": "deptName",
+									"value": "rhone",
+									"disabled": true
+								},
+								{
+									"key": "deptCode",
+									"value": "69"
+								}
+							]
+						},
+						"description": "Pour inscrire un utilisateur depuis le formulaire d'inscription"
+					},
+					"response": []
+				},
+				{
+					"name": "AddUser(Signup_Artist)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/users/add?username=mickey&password=qwerty&email=mickey@mail.fr&cityName=paris&cityCode=75001&deptCode=75&artistName=mickemouse&shortDesc=mascotte",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"users",
+								"add"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "mickey"
+								},
+								{
+									"key": "password",
+									"value": "qwerty"
+								},
+								{
+									"key": "email",
+									"value": "mickey@mail.fr"
+								},
+								{
+									"key": "cityName",
+									"value": "paris"
+								},
+								{
+									"key": "cityCode",
+									"value": "75001"
+								},
+								{
+									"key": "deptName",
+									"value": "paris",
+									"disabled": true
+								},
+								{
+									"key": "deptCode",
+									"value": "75"
+								},
+								{
+									"key": "artistName",
+									"value": "mickemouse"
+								},
+								{
+									"key": "shortDesc",
+									"value": "mascotte"
+								}
+							]
+						},
+						"description": "Pour inscrire un utilisateur \"Artiste\" depuis le formulaire d'inscription"
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserInfo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/users/info",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"users",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addEvent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/events/add?date=04/04/2040&places=30003&id=13",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"events",
+								"add"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "04/04/2040"
+								},
+								{
+									"key": "places",
+									"value": "30003"
+								},
+								{
+									"key": "id",
+									"value": "13"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEvent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/events/update/19?date=07/07/2030&places=900&id=10",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"events",
+								"update",
+								"19"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "07/07/2030"
+								},
+								{
+									"key": "places",
+									"value": "900"
+								},
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hello Tests",
+			"item": [
+				{
+					"name": "Hello User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4a5b2f2e-ce33-4541-828c-343517425479",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status is 200\"] = responseCode.code == \"200\""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/hello/user",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"hello",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hello Admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6f8d7bc-9e3b-4dde-bbb5-f4ae6469ac13",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status is 403\"] = responseCode.code == \"403\""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/hello/admin",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"hello",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Geo API",
+			"item": [
+				{
+					"name": "getCommunes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/public/communes/nom?value=lyo",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"public",
+								"communes",
+								"nom"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "lyo"
+								}
+							]
+						},
+						"description": "Récupération d'une liste de communes depuis son nom"
+					},
+					"response": []
+				},
+				{
+					"name": "getCommunesByPostalCode",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/public/communes/codepostal?value=69001",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"public",
+								"communes",
+								"codepostal"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "69001"
+								}
+							]
+						},
+						"description": "Récupère une liste de communes par code postal"
+					},
+					"response": []
+				},
+				{
+					"name": "getDepartement",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/departements/nom?value=Ain",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"departements",
+								"nom"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "Ain"
+								}
+							]
+						},
+						"description": "Récupération d'une liste de départements depuis divers paramètres"
+					},
+					"response": []
+				},
+				{
+					"name": "getDepartementByCode",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/departements/code?value=01",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"departements",
+								"code"
+							],
+							"query": [
+								{
+									"key": "value",
+									"value": "01"
+								}
+							]
+						},
+						"description": "Récupération d'une liste de départements selon le code du département"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Artist",
+			"item": [
+				{
+					"name": "Get Artist List by Departement",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/artist/list",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"artist",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateArtist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/artist/update?artist_name=name&artist_shortDesc=shortdesc&artist_longDesc=longdesc&artist_phone=phone&artist_email=email&artist_website=website",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"artist",
+								"update"
+							],
+							"query": [
+								{
+									"key": "artist_name",
+									"value": "name"
+								},
+								{
+									"key": "artist_shortDesc",
+									"value": "shortdesc"
+								},
+								{
+									"key": "artist_longDesc",
+									"value": "longdesc"
+								},
+								{
+									"key": "artist_phone",
+									"value": "phone"
+								},
+								{
+									"key": "artist_email",
+									"value": "email"
+								},
+								{
+									"key": "artist_website",
+									"value": "website"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1c483da9-683f-430c-a407-4021131a98d6",
+						"exec": [
+							"var headerJwtUser = responseHeaders[\"Authorization\"]",
+							"postman.setEnvironmentVariable(\"tokenUser\", headerJwtUser);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"username\":\"jean\", \"password\":\"jean\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
