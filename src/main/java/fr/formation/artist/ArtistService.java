@@ -83,8 +83,8 @@ public class ArtistService {
 		return artist;
 	}
 
-	public List<Artist> findArtistsByDepartementCode (final String codeDepartement) {
-		return artistRepository.findArtistsByUser_DepartmentCode(codeDepartement);
+	public List<Artist> findArtistsByDepartementCode (final String codeDepartement, Long userId) {
+		return artistRepository.findArtistsByUser_DepartmentCode(codeDepartement, userId);
 	}
 
 
