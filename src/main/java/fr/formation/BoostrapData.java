@@ -141,5 +141,59 @@ public class BoostrapData {
 				),
 				null
 		);
+
+		artistService.addNewArtist(
+				"Bob le Mécano",
+				"Arrive chez vous pour tout démonter !",
+				"Manie le marteau et la scie comme personne",
+				"0678787878",
+				"bob@mecano.fr",
+				"bobthemecano.fr",
+				userService.addNewUser(
+						"Bob",
+						passwordEncoder.encode("3Wxcvbn3"),
+						"bob@user.fr",
+						"Guise",
+						"02120",
+						"02"
+				),
+				null
+		);
+
+		artistService.addNewArtist(
+				"JaggerMeister",
+				"Enchaîne les riffs aussi vite que les shots !",
+				"A composé une symphonie mais ne s'en souvient pas (probablement une soirée trop arrosée...)",
+				"0632323232",
+				"mick@jaggermeister.fr",
+				"jaggermeister.fr",
+				userService.addNewUser(
+						"mick",
+						passwordEncoder.encode("1Azerty1"),
+						"mick@jagger.fr",
+						"Braine",
+						"02220",
+						"02"
+				),
+				null
+		);
+
+		artistService.addNewArtist(
+				"DaviDetat",
+				"Mixeur qui s'adapte au budget",
+				"J'ai branché ma platine une fois mais j'ai vite arrêté (trop de câble)",
+				"0679797979",
+				"davidetat@djdetat.fr",
+				"djdetat.fr",
+				userService.addNewUser(
+						"david",
+						passwordEncoder.encode("1Azerty1"),
+						"david@caramail.fr",
+						"Coucy-le-Château-Auffrique",
+						"02380",
+						"02"
+				),
+				null
+		);
 	}
 }
