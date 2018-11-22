@@ -51,6 +51,10 @@ public class ArtistService {
 	public Artist addNewArtist(String artist_name, String artist_shortDesc, String artist_longDesc,
 			String artist_phone, String artist_email, String artist_website, User user, Image image) {
 
+		if(image == null) {
+			image = imageService.getDefaultImg();
+		}
+
 		Artist artist = new Artist(artist_name, artist_shortDesc, artist_longDesc, 
 				 artist_phone, artist_email, artist_website, user, image);
 		artist = artistRepository.save(artist);
@@ -76,6 +80,8 @@ public class ArtistService {
 			if(image != null) {
 				artist.setImage(image);
 			}
+		} else {
+			artist.setImage(imageService.getDefaultImg());
 		}
 
 		artist = artistRepository.saveAndFlush(artist);
