@@ -45,10 +45,10 @@ public class Event {
     @Column(nullable = false)
     private int event_nbPlace;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Artist artist;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User user;
 
     /**

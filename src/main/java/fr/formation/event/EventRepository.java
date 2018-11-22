@@ -18,7 +18,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Event findEventsByUser_name(@Param("username") String username);
 
 
-    @Query(value = "Select * from events WHERE events.id = id ", nativeQuery = true)
+    @Query(value = "Select * from events WHERE events.id = :id ", nativeQuery = true)
     Event findEventsId(@Param("id") Long id);
 
 
