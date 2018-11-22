@@ -25,4 +25,8 @@ public interface ArtistRepository extends  JpaRepository<Artist, Long>  {
     @Query(value = "SELECT * from artist WHERE artist.user_id = :id",
     		nativeQuery = true)
 	 Artist findArtistByUser_Id(@Param("id") Long id);
-	 }
+
+	@Query(value = "SELECT * from artist WHERE artist.id = :id",
+			nativeQuery = true)
+	Artist findArtistByArtist_Id(@Param("id") Long id);
+}

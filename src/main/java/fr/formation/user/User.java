@@ -1,8 +1,22 @@
 package fr.formation.user;
 
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.REFRESH;
+import static javax.persistence.CascadeType.REMOVE;
+
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
+import fr.formation.event.Event;
 
 /**
 * The type User.
@@ -12,122 +26,126 @@ import javax.persistence.*;
 public class User {
 
     /**
-	 * @param username the username
-	 * @param password the password
-	 * @param email the email
-	 * @param cityName the city name
-	 * @param cityCode the city code
-	 * @param deptName the department name
-	 * @param deptCode the department code
-	 */
-	public User( String username, String password, String email, String cityName,
-			String cityCode, String deptName, String deptCode) {
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.cityName = cityName;
-		this.cityCode = cityCode;
-		this.departmentName = deptName;
-		this.departmentCode = deptCode;
-	}
+     * @param username the username
+     * @param password the password
+     * @param email the email
+     * @param cityName the city name
+     * @param cityCode the city code
+     * @param deptName the department name
+     * @param deptCode the department code
+     */
+    public User(String username, String password, String email, String cityName, String cityCode, String deptName,
+            String deptCode) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.cityName = cityName;
+        this.cityCode = cityCode;
+        this.departmentName = deptName;
+        this.departmentCode = deptCode;
+    }
 
-	public User() {}
+    public User() {
+    }
 
+    @Id
+    @GeneratedValue
+    private Long id;
 
-	@Id
-	@GeneratedValue
-	private Long id;
-	
-	@Column(unique = true, nullable = false)
-	private String username;
+    @Column(unique = true, nullable = false)
+    private String username;
 
-	@Column(nullable = false)
-	@JsonIgnore
-	private String password;
-	
-	@Column(unique = true, nullable = false)
-	private String email;
-	
-	@Column(nullable = false)
-	private String cityName;
-	
-	@Column(nullable = false)
-	private String cityCode;
-	
-	@Column(nullable = false)
-	private String departmentName;
-	
-	@Column(nullable = false)
-	private String departmentCode;
+    @Column(nullable = false)
+    @JsonIgnore
+    private String password;
 
+    @Column(unique = true, nullable = false)
+    private String email;
 
+    @Column(nullable = false)
+    private String cityName;
 
-//	
-//	@OneToMany(mappedBy ="user")
-//	private Set<Event> events ;
+    @Column(nullable = false)
+    private String cityCode;
 
+    @Column(nullable = false)
+    private String departmentName;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(nullable = false)
+    private String departmentCode;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @OneToMany(cascade = { REMOVE, DETACH, MERGE, REFRESH })
+    private Set<Event> events;
 
-	public String getUsername() {
-		return username;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getUsername() {
+        return username;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getCityName() {
-		return cityName;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setCityName(String cityName) {
-		this.cityName = cityName;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getCityCode() {
-		return cityCode;
-	}
+    public String getCityName() {
+        return cityName;
+    }
 
-	public void setCityCode(String cityCode) {
-		this.cityCode = cityCode;
-	}
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
 
-	public String getDepartmentName() {
-		return departmentName;
-	}
+    public String getCityCode() {
+        return cityCode;
+    }
 
-	public void setDepartmentName(String departmentName) {
-		this.departmentName = departmentName;
-	}
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
 
-	public String getDepartmentCode() {
-		return departmentCode;
-	}
+    public String getDepartmentName() {
+        return departmentName;
+    }
 
-	public void setDepartmentCode(String departmentCode) {
-		this.departmentCode = departmentCode;
-	}
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getDepartmentCode() {
+        return departmentCode;
+    }
+
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode;
+    }
+
+    public Set<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
+    }
 }

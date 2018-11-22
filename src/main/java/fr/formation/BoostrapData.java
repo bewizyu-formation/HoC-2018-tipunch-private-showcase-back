@@ -1,6 +1,8 @@
 package fr.formation;
 
 import fr.formation.artist.ArtistService;
+import fr.formation.event.EventService;
+import fr.formation.user.User;
 import fr.formation.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -17,18 +19,21 @@ public class BoostrapData {
 	private ArtistService artistService;
 	private UserService userService;
 	private PasswordEncoder passwordEncoder;
+	private EventService eventService;
 
 	/**
 	 * Instantiates a new Boostrap data.
 	 *
 	 * @param userService     the user service
 	 * @param passwordEncoder the password encoder
+	 *
 	 */
 	@Autowired
-	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder) {
+	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder, EventService eventService) {
 		this.userService = userService;
 		this.artistService = artistService;
 		this.passwordEncoder = passwordEncoder;
+		this.eventService = eventService;
 	}
 
 	/**
