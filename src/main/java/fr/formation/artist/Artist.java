@@ -232,4 +232,12 @@ public class Artist {
 	public void setImage(Image image) {
 		this.image = image;
 	}
+	
+	public Set<Event> getEvents() {
+        return events;
+   	 }
+
+    public void setEvents(Set<Event> events) {
+       	this.events = events;
+    }
 }
