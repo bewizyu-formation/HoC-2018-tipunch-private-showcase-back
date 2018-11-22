@@ -25,6 +25,7 @@ public class BoostrapData {
 	 *
 	 * @param userService     the user service
 	 * @param passwordEncoder the password encoder
+	 *
 	 */
 	@Autowired
 	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder, UploadService uploadService) {
