@@ -8,16 +8,14 @@ import fr.formation.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.Resource;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/image")
@@ -43,5 +41,10 @@ public class ImageController extends AbstractController {
         UserInfoDTO userInfo = userService.getUserInfo(user);
 
         imageService.addFile(file, userInfo);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Resource> getImage(@PathVariable(name = "id") Long id) {
+        return imageService.getImage(id);
     }
 }
