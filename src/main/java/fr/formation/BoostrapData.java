@@ -1,6 +1,7 @@
 package fr.formation;
 
 import fr.formation.artist.ArtistService;
+import fr.formation.upload.UploadService;
 import fr.formation.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -17,6 +18,7 @@ public class BoostrapData {
 	private ArtistService artistService;
 	private UserService userService;
 	private PasswordEncoder passwordEncoder;
+	private UploadService uploadService;
 
 	/**
 	 * Instantiates a new Boostrap data.
@@ -25,10 +27,11 @@ public class BoostrapData {
 	 * @param passwordEncoder the password encoder
 	 */
 	@Autowired
-	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder) {
+	public BoostrapData(UserService userService, ArtistService artistService, PasswordEncoder passwordEncoder, UploadService uploadService) {
 		this.userService = userService;
 		this.artistService = artistService;
 		this.passwordEncoder = passwordEncoder;
+		this.uploadService = uploadService;
 	}
 
 	/**
@@ -36,6 +39,9 @@ public class BoostrapData {
 	 */
 	@EventListener(ContextRefreshedEvent.class)
 	public void onStart() {
+
+		uploadService.deleteAll();
+		uploadService.init();
 
 		userService.addNewUser(
 				"admin",
@@ -69,7 +75,8 @@ public class BoostrapData {
 						"Paris",
 						"75001",
 						"75"
-				)
+				),
+				null
 		);
 
 		artistService.addNewArtist(
@@ -86,7 +93,8 @@ public class BoostrapData {
 						"Saint-Quentin",
 						"02100",
 						"02"
-				)
+				),
+				null
 		);
 
 		artistService.addNewArtist(
@@ -103,7 +111,8 @@ public class BoostrapData {
 						"Laon",
 						"02000",
 						"02"
-				)
+				),
+				null
 		);
 
 		userService.addNewUser(
@@ -129,7 +138,8 @@ public class BoostrapData {
 						"Fère-en-Tardenois",
 						"02130",
 						"02"
-				)
+				),
+				null
 		);
 	}
 }

@@ -37,7 +37,7 @@ public class UserController extends AbstractController {
         User user = userService.addNewUser(username, password, email, cityName, cityCode, deptCode);
 
         if (artistName != null && shortDesc != null) {
-            artistService.addNewArtist(artistName, shortDesc, null, null, null, null, user);
+            artistService.addNewArtist(artistName, shortDesc, null, null, null, null, user, null);
         }
 
         return user;

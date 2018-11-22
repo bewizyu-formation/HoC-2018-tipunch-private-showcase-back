@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6db8d5c2-cf0e-4904-a340-3ab3517b0d79",
+		"_postman_id": "fd4757fc-f45a-43ce-90af-e933eb81b3bf",
 		"name": "PrivateShowCase User",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -409,14 +409,31 @@
 								"key": "Authorization",
 								"value": "{{tokenUser}}",
 								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": ""
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "null si vide",
+									"type": "file",
+									"src": ""
+								}
+							]
 						},
 						"url": {
-							"raw": "{{uri}}/artist/update?artist_name=name&artist_shortDesc=shortdesc&artist_longDesc=longdesc&artist_phone=phone&artist_email=email&artist_website=website",
+							"raw": "{{uri}}/artist/update?name=name&shortdesc=shortdesc&longdesc=longdesc&phone=phone&email=email&website=website",
 							"host": [
 								"{{uri}}"
 							],
@@ -426,28 +443,34 @@
 							],
 							"query": [
 								{
-									"key": "artist_name",
-									"value": "name"
+									"key": "name",
+									"value": "name",
+									"description": "null si vide"
 								},
 								{
-									"key": "artist_shortDesc",
-									"value": "shortdesc"
+									"key": "shortdesc",
+									"value": "shortdesc",
+									"description": "null si vide"
 								},
 								{
-									"key": "artist_longDesc",
-									"value": "longdesc"
+									"key": "longdesc",
+									"value": "longdesc",
+									"description": "null si vide"
 								},
 								{
-									"key": "artist_phone",
-									"value": "phone"
+									"key": "phone",
+									"value": "phone",
+									"description": "null si vide"
 								},
 								{
-									"key": "artist_email",
-									"value": "email"
+									"key": "email",
+									"value": "email",
+									"description": "null si vide"
 								},
 								{
-									"key": "artist_website",
-									"value": "website"
+									"key": "website",
+									"value": "website",
+									"description": "null si vide"
 								}
 							]
 						}
@@ -463,13 +486,13 @@
 					"listen": "test",
 					"script": {
 						"id": "1c483da9-683f-430c-a407-4021131a98d6",
-						"type": "text/javascript",
 						"exec": [
 							"var headerJwtUser = responseHeaders[\"Authorization\"]",
 							"postman.setEnvironmentVariable(\"tokenUser\", headerJwtUser);",
 							"",
 							""
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -483,7 +506,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"username\":\"user\", \"password\":\"user\"}"
+					"raw": "{ \"username\":\"jean\", \"password\":\"jean\"}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/login",
