@@ -31,7 +31,7 @@ public class ImageService {
     List<String> files = new ArrayList<String>();
 
     public void addDefaultImage() {
-        String img_path = "img_default".concat(System.getProperty("file.separator")).concat("default.jpg").replace("\"", "/");
+        String img_path = "img_default";
         Image image = new Image("default.jpg", img_path);
         imageRepository.save(image);
     }
@@ -45,8 +45,7 @@ public class ImageService {
         String artist_id = userInfo.getArtistId().toString();
         Long date = new Date().getTime();
         String dir_name = artist_id.concat("_").concat(date.toString());
-        String img_path = ROOT_DIR.concat(System.getProperty("file.separator")).concat(dir_name).concat(System.getProperty("file.separator"))
-                .concat(file.getOriginalFilename()).replace("\\", "/");
+        String img_path = ROOT_DIR.concat(System.getProperty("file.separator")).concat(dir_name);
         String message = "";
 
         uploadService.createArtistImageDirectory(dir_name);
@@ -67,8 +66,13 @@ public class ImageService {
     }
 
     @ResponseBody
-    public ResponseEntity<Resource> getImage(String filename, Path img_path) {
-        Resource file = uploadService.loadFile(filename, img_path);
+    public ResponseEntity<Resource> getImage(Long id) {
+        Image image = imageRepository.findImageById(id);
+        String filename = image.getImg_name();
+        String img_path = image.getImg_path();
+        Path imgPath = Paths.get(img_path);
+
+        Resource file = uploadService.loadFile(filename, imgPath);
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
                 .body(file);

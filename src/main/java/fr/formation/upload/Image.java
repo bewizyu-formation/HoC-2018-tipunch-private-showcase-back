@@ -1,5 +1,7 @@
 package fr.formation.upload;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 
@@ -22,6 +24,7 @@ public class Image {
     private String img_name;
 
     @Column(unique = true, nullable = false)
+    @JsonIgnore
     private String img_path;
 
 
