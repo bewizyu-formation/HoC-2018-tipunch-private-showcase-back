@@ -493,6 +493,99 @@
 			]
 		},
 		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "addEvent",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "{{tokenUser}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/events/add?date=04/04/2040&places=30&id=19",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"events",
+								"add"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "04/04/2040",
+									"description": "Date de l'évènement"
+								},
+								{
+									"key": "places",
+									"value": "30",
+									"description": "Nombre de places"
+								},
+								{
+									"key": "id",
+									"value": "19",
+									"description": "Artist ID"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEvent",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/events/update/19?date=07/07/2030&places=900&id=10",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"events",
+								"update",
+								"19"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "07/07/2030"
+								},
+								{
+									"key": "places",
+									"value": "900"
+								},
+								{
+									"key": "id",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Login User",
 			"event": [
 				{
