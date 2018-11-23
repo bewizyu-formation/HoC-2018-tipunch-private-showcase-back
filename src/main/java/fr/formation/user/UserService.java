@@ -93,9 +93,14 @@ public class UserService implements UserDetailsService {
      */
     public UserInfoDTO getUserInfo(User user) {
 
-        Artist artist = artistRepository.findArtistByUser_Id(user.getId());
-        UserInfoDTO userInfoDTO = new UserInfoDTO(artist.getId(), user.getUsername(), artist.getArtistName(),
+        UserInfoDTO userInfoDTO = new UserInfoDTO(null, user.getUsername(), null,
                 user.getDepartmentCode());
+        Artist artist = artistRepository.findArtistByUser_Id(user.getId());
+
+        if(artist != null) {
+            userInfoDTO.setArtistId(artist.getId());
+            userInfoDTO.setArtistName(artist.getArtistName());
+        }
 
         return userInfoDTO;
     }
