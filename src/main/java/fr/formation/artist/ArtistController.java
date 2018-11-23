@@ -50,4 +50,14 @@ public class ArtistController extends AbstractController {
 
 		return artist;
 	}
+	@GetMapping("/info/{artistId}")
+	public Artist ArtistInfo(@PathVariable Long artistId) {
+
+		User user = super.getAuthenticatedUser();
+		Artist artist = artistService.getArtistInfo(user, artistId);
+
+		return artist;
+	}
+
+
 }

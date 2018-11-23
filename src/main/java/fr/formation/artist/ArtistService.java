@@ -94,6 +94,20 @@ public class ArtistService {
 	}
 
 
+	public  Artist getArtistInfo(User user, Long artistId) {
+
+		Artist artist = artistRepository.findArtistByArtist_Id(artistId);
+		artist = artistRepository.save(artist);
+
+		return artist;
+
+
+
+
+
+	}
+
+
 
 
 }
