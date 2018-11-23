@@ -508,6 +508,35 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "GetArtistByArtistId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{tokenUser}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{uri}}/artist/info/8",
+							"host": [
+								"{{uri}}"
+							],
+							"path": [
+								"artist",
+								"info",
+								"8"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -667,7 +696,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \"username\":\"patrick\", \"password\":\"1Azerty1\"}"
+					"raw": "{ \"username\":\"user\", \"password\":\"user\"}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/login",
